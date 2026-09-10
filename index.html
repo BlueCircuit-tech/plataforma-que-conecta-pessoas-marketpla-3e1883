@@ -3369,6 +3369,497 @@ function abrirModalNotificacoes() {
 }
 </script>
 
+    <section data-tela="painel-admin" class="hidden">
+        <div class="px-4 pt-4 pb-2">
+            <h1 class="font-display text-xl font-bold text-marca-900">Painel Administrativo</h1>
+            <p class="text-sm text-gray-500 mt-0.5">Visão 360° da plataforma SiCardi · Dados atualizados há 2 min</p>
+        </div>
+
+        <div class="px-4 pb-2">
+            <div class="flex gap-2 bg-white rounded-xl p-1 shadow-sm border border-gray-100">
+                <button onclick="painel_admin_trocarAba('visao')" id="aba-visao" class="aba-ativa flex-1 py-2 text-sm font-semibold rounded-lg bg-marca-900 text-white transition-all duration-200 active:scale-95">Visão Geral</button>
+                <button onclick="painel_admin_trocarAba('usuarios')" id="aba-usuarios" class="flex-1 py-2 text-sm font-semibold rounded-lg text-gray-500 hover:text-marca-700 transition-all duration-200 active:scale-95">Usuários</button>
+                <button onclick="painel_admin_trocarAba('alertas')" id="aba-alertas" class="flex-1 py-2 text-sm font-semibold rounded-lg text-gray-500 hover:text-marca-700 transition-all duration-200 active:scale-95 relative">
+                    Alertas
+                    <span id="badge-alertas" class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">7</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="conteudo-visao" class="px-4 pb-4">
+            <div class="grid grid-cols-2 gap-3 mt-2">
+                <div class="card p-4 bg-white rounded-2xl shadow-sm border border-gray-100 cursor-default">
+                    <div class="w-9 h-9 rounded-xl bg-marca-50 flex items-center justify-center mb-2">
+                        <svg class="w-5 h-5 text-marca-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <p class="text-xs text-gray-500 font-medium">GMV Total</p>
+                    <p class="text-lg font-bold text-marca-900 font-display mt-0.5">R$ 48,7M</p>
+                    <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                        +12,4% vs mês anterior
+                    </p>
+                </div>
+                <div class="card p-4 bg-white rounded-2xl shadow-sm border border-gray-100 cursor-default">
+                    <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center mb-2">
+                        <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-3.4-5.522 3.123 3.123 0 00-1.594.228c-.745.416-1.51.8-2.293 1.15a9.37 9.37 0 01-4.46 1.054 9.337 9.337 0 01-4.121-.952 4.125 4.125 0 013.4-5.522 3.123 3.123 0 011.594.228c.745.416 1.51.8 2.293 1.15"/></svg>
+                    </div>
+                    <p class="text-xs text-gray-500 font-medium">Usuários Ativos</p>
+                    <p class="text-lg font-bold text-marca-900 font-display mt-0.5">142.863</p>
+                    <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                        +8,2% vs mês anterior
+                    </p>
+                </div>
+                <div class="card p-4 bg-white rounded-2xl shadow-sm border border-gray-100 cursor-default">
+                    <div class="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center mb-2">
+                        <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"/></svg>
+                    </div>
+                    <p class="text-xs text-gray-500 font-medium">Taxa de Conversão</p>
+                    <p class="text-lg font-bold text-marca-900 font-display mt-0.5">3,84%</p>
+                    <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                        +0,3% vs mês anterior
+                    </p>
+                </div>
+                <div class="card p-4 bg-white rounded-2xl shadow-sm border border-gray-100 cursor-default">
+                    <div class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center mb-2">
+                        <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
+                    </div>
+                    <p class="text-xs text-gray-500 font-medium">Ticket Médio</p>
+                    <p class="text-lg font-bold text-marca-900 font-display mt-0.5">R$ 187,90</p>
+                    <p class="text-xs text-red-500 font-medium mt-1 flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                        -2,1% vs mês anterior
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-4 bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-display font-bold text-marca-900 text-sm">Crescimento Mensal · GMV</h3>
+                    <select class="text-xs bg-gray-50 border border-gray-200 rounded-lg px-2 py-1 text-gray-600">
+                        <option>Últimos 6 meses</option>
+                        <option>Último ano</option>
+                    </select>
+                </div>
+                <svg viewBox="0 0 340 160" class="w-full" style="max-height:160px">
+                    <defs>
+                        <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#2563EB" stop-opacity="0.25"/>
+                            <stop offset="100%" stop-color="#2563EB" stop-opacity="0.02"/>
+                        </linearGradient>
+                    </defs>
+                    <line x1="30" y1="10" x2="30" y2="140" stroke="#E5E7EB" stroke-width="1"/>
+                    <line x1="30" y1="140" x2="330" y2="140" stroke="#E5E7EB" stroke-width="1"/>
+                    <line x1="30" y1="105" x2="330" y2="105" stroke="#F3F4F6" stroke-width="0.5"/>
+                    <line x1="30" y1="70" x2="330" y2="70" stroke="#F3F4F6" stroke-width="0.5"/>
+                    <line x1="30" y1="35" x2="330" y2="35" stroke="#F3F4F6" stroke-width="0.5"/>
+                    <text x="24" y="144" text-anchor="end" font-size="7" fill="#9CA3AF">0</text>
+                    <text x="24" y="109" text-anchor="end" font-size="7" fill="#9CA3AF">10M</text>
+                    <text x="24" y="74" text-anchor="end" font-size="7" fill="#9CA3AF">20M</text>
+                    <text x="24" y="39" text-anchor="end" font-size="7" fill="#9CA3AF">30M</text>
+                    <text x="24" y="14" text-anchor="end" font-size="7" fill="#9CA3AF">40M</text>
+                    <text x="52" y="153" text-anchor="middle" font-size="7" fill="#6B7280" font-weight="600">Jul</text>
+                    <text x="105" y="153" text-anchor="middle" font-size="7" fill="#6B7280" font-weight="600">Ago</text>
+                    <text x="158" y="153" text-anchor="middle" font-size="7" fill="#6B7280" font-weight="600">Set</text>
+                    <text x="211" y="153" text-anchor="middle" font-size="7" fill="#6B7280" font-weight="600">Out</text>
+                    <text x="264" y="153" text-anchor="middle" font-size="7" fill="#6B7280" font-weight="600">Nov</text>
+                    <text x="317" y="153" text-anchor="middle" font-size="7" fill="#6B7280" font-weight="600">Dez</text>
+                    <path d="M52,120 L105,105 L158,85 L211,78 L264,55 L317,32" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M52,120 L105,105 L158,85 L211,78 L264,55 L317,32 L317,140 L52,140 Z" fill="url(#areaGrad)"/>
+                    <circle cx="52" cy="120" r="4" fill="#2563EB" stroke="white" stroke-width="1.5"/>
+                    <circle cx="105" cy="105" r="4" fill="#2563EB" stroke="white" stroke-width="1.5"/>
+                    <circle cx="158" cy="85" r="4" fill="#2563EB" stroke="white" stroke-width="1.5"/>
+                    <circle cx="211" cy="78" r="4" fill="#2563EB" stroke="white" stroke-width="1.5"/>
+                    <circle cx="264" cy="55" r="4" fill="#2563EB" stroke="white" stroke-width="1.5"/>
+                    <circle cx="317" cy="32" r="5" fill="#1E3A5F" stroke="white" stroke-width="2"/>
+                </svg>
+            </div>
+
+            <div class="mt-4 bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
+                <h3 class="font-display font-bold text-marca-900 text-sm mb-3">Volume por Região</h3>
+                <svg viewBox="0 0 340 140" class="w-full" style="max-height:140px">
+                    <rect x="15" y="10" width="50" height="110" rx="6" fill="#1E3A5F"/>
+                    <rect x="15" y="62" width="50" height="58" rx="6" fill="#2563EB" opacity="0.85"/>
+                    <rect x="80" y="25" width="50" height="95" rx="6" fill="#1E3A5F"/>
+                    <rect x="80" y="45" width="50" height="75" rx="6" fill="#2563EB" opacity="0.75"/>
+                    <rect x="145" y="40" width="50" height="80" rx="6" fill="#1E3A5F"/>
+                    <rect x="145" y="60" width="50" height="60" rx="6" fill="#2563EB" opacity="0.65"/>
+                    <rect x="210" y="55" width="50" height="65" rx="6" fill="#1E3A5F"/>
+                    <rect x="210" y="82" width="50" height="38" rx="6" fill="#2563EB" opacity="0.5"/>
+                    <rect x="275" y="70" width="50" height="50" rx="6" fill="#1E3A5F"/>
+                    <rect x="275" y="92" width="50" height="28" rx="6" fill="#2563EB" opacity="0.4"/>
+                    <text x="40" y="128" text-anchor="middle" font-size="7" fill="#6B7280">SP</text>
+                    <text x="105" y="128" text-anchor="middle" font-size="7" fill="#6B7280">RJ</text>
+                    <text x="170" y="128" text-anchor="middle" font-size="7" fill="#6B7280">MG</text>
+                    <text x="235" y="128" text-anchor="middle" font-size="7" fill="#6B7280">PR</text>
+                    <text x="300" y="128" text-anchor="middle" font-size="7" fill="#6B7280">RS</text>
+                    <text x="40" y="8" text-anchor="middle" font-size="7.5" fill="#1E3A5F" font-weight="700">R$18M</text>
+                    <text x="105" y="8" text-anchor="middle" font-size="7.5" fill="#1E3A5F" font-weight="700">R$12M</text>
+                    <text x="170" y="8" text-anchor="middle" font-size="7.5" fill="#1E3A5F" font-weight="700">R$8M</text>
+                    <text x="235" y="8" text-anchor="middle" font-size="7.5" fill="#1E3A5F" font-weight="700">R$6M</text>
+                    <text x="300" y="8" text-anchor="middle" font-size="7.5" fill="#1E3A5F" font-weight="700">R$4,7M</text>
+                </svg>
+            </div>
+
+            <div class="mt-4 bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-display font-bold text-marca-900 text-sm">Vendedores Top · Último mês</h3>
+                    <span class="text-xs text-marca-600 font-medium">Top 5</span>
+                </div>
+                <div class="space-y-2.5" id="lista-vendedores-top"></div>
+            </div>
+        </div>
+
+        <div id="conteudo-usuarios" class="hidden px-4 pb-4">
+            <div class="mt-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-3">
+                <div class="relative">
+                    <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 0010.5 18.75a7.5 7.5 0 00-7.5-7.5A7.5 7.5 0 005.196 5.196M21 21l-6.225-6.225"/></svg>
+                    <input type="text" id="busca-usuarios" placeholder="Buscar por nome, CPF ou e-mail…" oninput="painel_admin_filtrarUsuarios()" class="w-full pl-9 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent transition-all">
+                </div>
+                <div class="flex gap-2 mt-3 overflow-x-auto pb-1">
+                    <button onclick="painel_admin_filtrarTipoUsuario('todos')" id="filtro-todos" class="filtro-ativo whitespace-nowrap px-3 py-1.5 text-xs font-semibold rounded-full bg-marca-900 text-white transition-all active:scale-95">Todos</button>
+                    <button onclick="painel_admin_filtrarTipoUsuario('comprador')" id="filtro-comprador" class="whitespace-nowrap px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all active:scale-95">Compradores</button>
+                    <button onclick="painel_admin_filtrarTipoUsuario('vendedor')" id="filtro-vendedor" class="whitespace-nowrap px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all active:scale-95">Vendedores</button>
+                    <button onclick="painel_admin_filtrarTipoUsuario('ambos')" id="filtro-ambos" class="whitespace-nowrap px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all active:scale-95">Ambos</button>
+                </div>
+            </div>
+            <div id="lista-usuarios" class="mt-3 space-y-2"></div>
+            <div id="estado-vazio-usuarios" class="hidden mt-8 text-center py-8">
+                <svg class="w-12 h-12 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-3.4-5.522 3.123 3.123 0 00-1.594.228c-.745.416-1.51.8-2.293 1.15a9.37 9.37 0 01-4.46 1.054 9.337 9.337 0 01-4.121-.952 4.125 4.125 0 013.4-5.522 3.123 3.123 0 011.594.228c.745.416 1.51.8 2.293 1.15"/></svg>
+                <p class="text-sm text-gray-400 font-medium">Nenhum usuário encontrado</p>
+                <p class="text-xs text-gray-400 mt-1">Tente outro termo ou filtro</p>
+            </div>
+        </div>
+
+        <div id="conteudo-alertas" class="hidden px-4 pb-4">
+            <div class="mt-2 space-y-3" id="lista-alertas"></div>
+            <div id="estado-vazio-alertas" class="hidden mt-8 text-center py-8">
+                <svg class="w-12 h-12 text-emerald-300 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <p class="text-sm text-gray-400 font-medium">Tudo certo por aqui!</p>
+                <p class="text-xs text-gray-400 mt-1">Nenhum alerta pendente</p>
+            </div>
+        </div>
+
+        <div class="mt-4 px-4 pb-8">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="px-4 py-3 border-b border-gray-100">
+                    <h3 class="font-display font-bold text-marca-900 text-sm">Ações Rápidas</h3>
+                </div>
+                <div class="divide-y divide-gray-50">
+                    <button onclick="mostrarTela('gestao-usuarios')" class="w-full flex items-center gap-3 px-4 py-3.5 hover:bg-gray-50 active:bg-gray-100 transition-colors active:scale-[0.98]">
+                        <div class="w-10 h-10 rounded-xl bg-marca-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-marca-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-3.4-5.522 3.123 3.123 0 00-1.594.228c-.745.416-1.51.8-2.293 1.15a9.37 9.37 0 01-4.46 1.054 9.337 9.337 0 01-4.121-.952 4.125 4.125 0 013.4-5.522 3.123 3.123 0 011.594.228c.745.416 1.51.8 2.293 1.15"/></svg>
+                        </div>
+                        <div class="text-left flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-marca-900">Gestão de Usuários</p>
+                            <p class="text-xs text-gray-500 truncate">Gerenciar permissões e acessos</p>
+                        </div>
+                        <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                    </button>
+                    <button onclick="mostrarTela('gestao-vendedores')" class="w-full flex items-center gap-3 px-4 py-3.5 hover:bg-gray-50 active:bg-gray-100 transition-colors active:scale-[0.98]">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3.75a.75.75 0 01.75.75V21m-4.5 0H2.25m11.25 0H21m-4.5 0v-7.5a.75.75 0 00-.75-.75h-3.75a.75.75 0 00-.75.75V21m-4.5 0H2.25m13.5 0v-6a.75.75 0 00-.75-.75h-3.75a.75.75 0 00-.75.75v6"/></svg>
+                        </div>
+                        <div class="text-left flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-marca-900">Gestão de Vendedores</p>
+                            <p class="text-xs text-gray-500 truncate">Aprovar, bloquear e relatórios</p>
+                        </div>
+                        <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                    </button>
+                    <button onclick="mostrarTela('financeiro')" class="w-full flex items-center gap-3 px-4 py-3.5 hover:bg-gray-50 active:bg-gray-100 transition-colors active:scale-[0.98]">
+                        <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
+                        </div>
+                        <div class="text-left flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-marca-900">Financeiro</p>
+                            <p class="text-xs text-gray-500 truncate">Repasses, chargebacks e taxas</p>
+                        </div>
+                        <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                    </button>
+                    <button onclick="mostrarTela('configuracoes')" class="w-full flex items-center gap-3 px-4 py-3.5 hover:bg-gray-50 active:bg-gray-100 transition-colors active:scale-[0.98]">
+                        <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003 1.008c-.253.255-.427.577-.476.913a6.112 6.112 0 000 1.197c.049.336.223.658.476.913l1.003 1.008c.424.426.493 1.07.26 1.431l-1.296 2.247a1.125 1.125 0 01-1.37.49l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.142 6.142 0 01-.22.128c-.331.183-.581.495-.644.87l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.42 6.42 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-1.008c.251-.255.425-.577.475-.913.097-.69.267-1.37.51-2.025a6.138 6.138 0 01-.475-.913L4.734 10.46a1.125 1.125 0 01-.26-1.431l1.297-2.247a1.125 1.125 0 011.37-.49l1.216.456c.356.133.751.072 1.076-.124.6-.364 1.054-.766 1.366-1.193l.221-.127c.332-.183.582-.495.644-.87l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <div class="text-left flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-marca-900">Configurações</p>
+                            <p class="text-xs text-gray-500 truncate">Taxas, regras e preferências</p>
+                        </div>
+                        <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    <script>
+    (function() {
+        var usuarios = [
+            {id:1,nome:'Carlos Eduardo Lima',email:'carlos.lima@email.com',cpf:'***.***.789-**',tipo:'ambos',role:'Comprador e Vendedor',avatar:'CL',cor:'bg-marca-600',status:'ativo',cadastro:'2023-03-15',pedidos:28,gmv:12400},
+            {id:2,nome:'Ana Beatriz Souza',email:'ana.souza@email.com',cpf:'***.***.123-**',tipo:'comprador',role:'Comprador',avatar:'AS',cor:'bg-blue-500',status:'ativo',cadastro:'2023-05-20',pedidos:14,gmv:4800},
+            {id:3,nome:'Roberto Carlos Nunes',email:'r.nunes@lojamoveis.com',cpf:'***.***.456-**',tipo:'vendedor',role:'Vendedor Premium',avatar:'RN',cor:'bg-emerald-500',status:'ativo',cadastro:'2022-11-08',pedidos:0,gmv:89000},
+            {id:4,nome:'Fernanda Oliveira',email:'fernanda.o@email.com',cpf:'***.***.789-**',tipo:'ambos',role:'Comprador e Vendedor',avatar:'FO',cor:'bg-purple-500',status:'pendente',cadastro:'2024-01-10',pedidos:5,gmv:2100},
+            {id:5,nome:'João Pedro Almeida',email:'joao.almeida@email.com',cpf:'***.***.321-**',tipo:'comprador',role:'Comprador',avatar:'JA',cor:'bg-amber-500',status:'ativo',cadastro:'2023-07-22',pedidos:33,gmv:15600},
+            {id:6,nome:'Marina Cardoso',email:'marina.c@eletroshop.com',cpf:'***.***.654-**',tipo:'vendedor',role:'Vendedor Standard',avatar:'MC',cor:'bg-teal-500',status:'ativo',cadastro:'2023-01-30',pedidos:0,gmv:34000},
+            {id:7,nome:'Thiago Rocha',email:'thiago.r@email.com',cpf:'***.***.987-**',tipo:'comprador',role:'Comprador',avatar:'TR',cor:'bg-indigo-500',status:'bloqueado',cadastro:'2023-09-14',pedidos:2,gmv:890},
+            {id:8,nome:'Patricia Mendes',email:'patricia.m@email.com',cpf:'***.***.147-**',tipo:'vendedor',role:'Vendedor Standard',avatar:'PM',cor:'bg-pink-500',status:'ativo',cadastro:'2023-06-05',pedidos:0,gmv:18500},
+            {id:9,nome:'Lucas Andrade',email:'lucas.a@email.com',cpf:'***.***.258-**',tipo:'ambos',role:'Comprador e Vendedor',avatar:'LA',cor:'bg-orange-500',status:'ativo',cadastro:'2022-08-19',pedidos:41,gmv:22300},
+            {id:10,nome:'Camila Barbosa',email:'camila.b@email.com',cpf:'***.***.369-**',tipo:'comprador',role:'Comprador',avatar:'CB',cor:'bg-cyan-500',status:'pendente',cadastro:'2024-02-01',pedidos:1,gmv:450}
+        ];
+
+        var vendedoresTop = [
+            {rank:1,nome:'Móveis & Decoração BH',avatar:'MD',cor:'bg-emerald-500',vendas:347,gmv:128400},
+            {rank:2,nome:'EletroShop Brasil',avatar:'EB',cor:'bg-blue-500',vendas:289,gmv:98400},
+            {rank:3,nome:'Moda Fit Store',avatar:'MF',cor:'bg-purple-500',vendas:234,gmv:76200},
+            {rank:4,nome:'SportsMax',avatar:'SM',cor:'bg-orange-500',vendas:198,gmv:58100},
+            {rank:5,nome:'PetLove Shop',avatar:'PL',cor:'bg-teal-500',vendas:167,gmv:43900}
+        ];
+
+        var alertas = [
+            {id:1,tipo:'denuncia',titulo:'Produto denunciado',desc:'Produto "Fone Bluetooth Pro X" foi denunciado por propaganda enganosa. Vendedor: EletroShop Brasil',data:'2024-12-14T10:30:00',gravidade:'alta',lido:false},
+            {id:2,tipo:'chargeback',titulo:'Chargeback recebido',desc:'Pedido #48291 · Valor: R$ 2.490,00 · Comprador alegou produto não recebido',data:'2024-12-14T08:15:00',gravidade:'alta',lido:false},
+            {id:3,tipo:'suporte',titulo:'3 suportes pendentes',desc:'Tempo médio de resposta: 4h 23min. Maior tempo: 8h (ticket #1192)',data:'2024-12-14T07:00:00',gravidade:'media',lido:false},
+            {id:4,tipo:'denuncia',titulo:'Denúncia de vendedor',desc:'Vendedor "Importados Express" recebeu 5 denúncias na última semana. Verificar conta.',data:'2024-12-13T18:45:00',gravidade:'alta',lido:false},
+            {id:5,tipo:'suporte',titulo:'Ticket escalonado',desc:'Ticket #1187 escalonado para suporte nível 2. Cliente insatisfeito com frete.',data:'2024-12-13T14:20:00',gravidade:'baixa',lido:true},
+            {id:6,tipo:'chargeback',titulo:'Chargeback em análise',desc:'Pedido #48150 · Valor: R$ 890,00 · Em fase de contestação com operadora',data:'2024-12-13T11:00:00',gravidade:'media',lido:false},
+            {id:7,tipo:'suporte',titulo:'Solicitação de reembolso',desc:'Pedido #48302 · Cliente solicitou reembolso total. Aguardando aprovação.',data:'2024-12-13T09:30:00',gravidade:'media',lido:true}
+        ];
+
+        function painel_admin_renderizarVendedoresTop() {
+            var container = document.getElementById('lista-vendedores-top');
+            var medalhas = ['🥇','🥈','🥉'];
+            var rankBadge = ['bg-amber-100 text-amber-700','bg-gray-200 text-gray-600','bg-orange-100 text-orange-700','bg-gray-100 text-gray-500','bg-gray-100 text-gray-500'];
+            var html = '';
+            vendedoresTop.forEach(function(v) {
+                html += '<div class="flex items-center gap-3 p-2.5 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer active:scale-[0.98]" onclick="painel_admin_abrirDetalheVendedor('+v.rank+')">';
+                html += '<div class="w-7 h-7 rounded-full '+v.cor+' text-white text-xs font-bold flex items-center justify-center flex-shrink-0">'+v.avatar+'</div>';
+                html += '<div class="flex-1 min-w-0">';
+                html += '<p class="text-sm font-semibold text-marca-900 truncate">'+v.nome+'</p>';
+                html += '<p class="text-xs text-gray-500">'+v.vendas+' vendas no mês</p>';
+                html += '</div>';
+                html += '<span class="text-xs font-bold px-2 py-0.5 rounded-full '+rankBadge[v.rank-1]+' flex-shrink-0">#'+v.rank+'</span>';
+                html += '<span class="text-xs font-semibold text-marca-700 flex-shrink-0 w-16 text-right">'+brl(v.gmv)+'</span>';
+                html += '</div>';
+            });
+            container.innerHTML = html;
+        }
+
+        function painel_admin_renderizarUsuarios(lista) {
+            var container = document.getElementById('lista-usuarios');
+            var vazio = document.getElementById('estado-vazio-usuarios');
+            if (!lista) lista = usuarios;
+            if (lista.length === 0) {
+                container.innerHTML = '';
+                vazio.classList.remove('hidden');
+                return;
+            }
+            vazio.classList.add('hidden');
+            var tipoLabels = {'comprador':'Comprador','vendedor':'Vendedor','ambos':'Comprador e Vendedor'};
+            var tipoBadge = {'comprador':'bg-blue-100 text-blue-700','vendedor':'bg-emerald-100 text-emerald-700','ambos':'bg-purple-100 text-purple-700'};
+            var statusConfig = {'ativo':{label:'Ativo',cls:'bg-emerald-100 text-emerald-700'},'pendente':{label:'Pendente',cls:'bg-amber-100 text-amber-700'},'bloqueado':{label:'Bloqueado',cls:'bg-red-100 text-red-700'}};
+            var html = '';
+            lista.forEach(function(u) {
+                var st = statusConfig[u.status];
+                html += '<div class="card p-3 bg-white rounded-2xl shadow-sm border border-gray-100 cursor-pointer active:scale-[0.98] transition-transform" onclick="painel_admin_abrirDetalheUsuario('+u.id+')">';
+                html += '<div class="flex items-center gap-3">';
+                html += '<div class="w-11 h-11 rounded-full '+u.cor+' text-white text-sm font-bold flex items-center justify-center flex-shrink-0">'+u.avatar+'</div>';
+                html += '<div class="flex-1 min-w-0">';
+                html += '<p class="text-sm font-semibold text-marca-900 truncate">'+u.nome+'</p>';
+                html += '<p class="text-xs text-gray-500 truncate">'+u.email+'</p>';
+                html += '</div>';
+                html += '<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full '+st.cls+' flex-shrink-0">'+st.label+'</span>';
+                html += '</div>';
+                html += '<div class="flex gap-3 mt-2.5 ml-14">';
+                html += '<span class="text-[11px] px-2 py-0.5 rounded-full '+tipoBadge[u.tipo]+' font-medium">'+tipoLabels[u.tipo]+'</span>';
+                html += '<span class="text-[11px] text-gray-500">'+u.role+'</span>';
+                html += '</div>';
+                html += '<div class="flex gap-4 mt-2 ml-14">';
+                html += '<span class="text-xs text-gray-500"><span class="font-medium text-marca-800">'+u.pedidos+'</span> pedidos</span>';
+                html += '<span class="text-xs text-gray-500">GMV: <span class="font-medium text-marca-800">'+brl(u.gmv)+'</span></span>';
+                html += '<span class="text-xs text-gray-500">Desde '+dataBR(u.cadastro)+'</span>';
+                html += '</div>';
+                html += '</div>';
+            });
+            container.innerHTML = html;
+        }
+
+        function painel_admin_filtrarUsuarios() {
+            var termo = document.getElementById('busca-usuarios').value.toLowerCase();
+            var filtroAtivo = document.querySelector('.filtro-ativo');
+            var tipoFiltro = filtroAtivo ? filtroAtivo.id.replace('filtro-','') : 'todos';
+            var lista = usuarios.filter(function(u) {
+                var matchTermo = !termo || u.nome.toLowerCase().includes(termo) || u.email.toLowerCase().includes(termo) || u.cpf.includes(termo);
+                var matchTipo = tipoFiltro === 'todos' || u.tipo === tipoFiltro || u.tipo === 'ambos';
+                return matchTermo && matchTipo;
+            });
+            painel_admin_renderizarUsuarios(lista);
+        }
+
+        function painel_admin_filtrarTipoUsuario(tipo) {
+            var botoes = document.querySelectorAll('#conteudo-usuarios .filtro-ativo, #conteudo-usuarios button[id^="filtro-"]');
+            botoes.forEach(function(b) {
+                b.classList.remove('filtro-ativo','bg-marca-900','text-white');
+                b.classList.add('bg-gray-100','text-gray-600');
+            });
+            var btn = document.getElementById('filtro-' + tipo);
+            btn.classList.add('filtro-ativo','bg-marca-900','text-white');
+            btn.classList.remove('bg-gray-100','text-gray-600');
+            painel_admin_filtrarUsuarios();
+        }
+
+        function painel_admin_renderizarAlertas() {
+            var container = document.getElementById('lista-alertas');
+            var vazio = document.getElementById('estado-vazio-alertas');
+            var naoLidos = alertas.filter(function(a){ return !a.lido; }).length;
+            var badge = document.getElementById('badge-alertas');
+            if (badge) {
+                if (naoLidos > 0) {
+                    badge.textContent = naoLidos;
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
+                }
+            }
+            var pendentes = alertas.filter(function(a){ return !a.lido; });
+            if (pendentes.length === 0) {
+                container.innerHTML = '';
+                vazio.classList.remove('hidden');
+                return;
+            }
+            vazio.classList.add('hidden');
+            var tipoIcon = {
+                'denuncia':'<svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>',
+                'chargeback':'<svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75"/></svg>',
+                'suporte':'<svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 013 21V12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg>'
+            };
+            var gravBadge = {'alta':'bg-red-100 text-red-700','media':'bg-amber-100 text-amber-700','baixa':'bg-gray-100 text-gray-600'};
+            var gravLabel = {'alta':'Alta','media':'Média','baixa':'Baixa'};
+            var html = '';
+            pendentes.forEach(function(a) {
+                var tempo = painel_admin_tempoDecorrido(a.data);
+                html += '<div class="card p-4 bg-white rounded-2xl shadow-sm border-l-4 '+((a.tipo==='chargeback'||a.tipo==='denuncia'&&a.gravidade==='alta')?'border-red-500':'border-amber-500')+'">';
+                html += '<div class="flex items-start gap-3">';
+                html += tipoIcon[a.tipo];
+                html += '<div class="flex-1 min-w-0">';
+                html += '<div class="flex items-center gap-2 mb-1">';
+                html += '<h4 class="text-sm font-semibold text-marca-900">'+a.titulo+'</h4>';
+                html += '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full '+gravBadge[a.gravidade]+' flex-shrink-0">'+gravLabel[a.gravidade]+'</span>';
+                html += '</div>';
+                html += '<p class="text-xs text-gray-600 leading-relaxed">'+a.desc+'</p>';
+                html += '<p class="text-[11px] text-gray-400 mt-1.5">'+tempo+'</p>';
+                html += '</div>';
+                html += '</div>';
+                html += '<div class="flex gap-2 mt-3 ml-8">';
+                html += '<button onclick="event.stopPropagation();painel_admin_resolverAlerta('+a.id+',\'resolvido\')" class="flex-1 py-2 text-xs font-semibold text-white bg-marca-600 rounded-xl active:scale-95 transition-all hover:bg-marca-700">Resolver</button>';
+                html += '<button onclick="event.stopPropagation();painel_admin_resolverAlerta('+a.id+',\'adiado\')" class="flex-1 py-2 text-xs font-semibold text-gray-600 bg-gray-100 rounded-xl active:scale-95 transition-all hover:bg-gray-200">Adiar</button>';
+                html += '</div>';
+                html += '</div>';
+            });
+            container.innerHTML = html;
+        }
+
+        function painel_admin_tempoDecorrido(iso) {
+            var d = new Date(iso);
+            var agora = new Date('2024-12-14T12:00:00');
+            var diff = agora - d;
+            var h = Math.floor(diff / 3600000);
+            var m = Math.floor((diff % 3600000) / 60000);
+            if (h > 0) return 'Há ' + h + 'h' + (m > 0 ? ' ' + m + 'min' : '');
+            return 'Há ' + m + ' minutos';
+        }
+
+        function painel_admin_resolverAlerta(id, acao) {
+            var idx = alertas.findIndex(function(a){ return a.id === id; });
+            if (idx >= 0) {
+                alertas[idx].lido = true;
+                painel_admin_renderizarAlertas();
+                if (acao === 'resolvido') {
+                    toast('Alerta #' + id + ' marcado como resolvido', 'ok');
+                } else {
+                    toast('Alerta #' + id + ' adiado para revisão posterior', 'info');
+                }
+            }
+        }
+
+        function painel_admin_abrirDetalheUsuario(id) {
+            var u = usuarios.find(function(x){ return x.id === id; });
+            if (!u) return;
+            var stLabel = u.status === 'ativo' ? 'Ativo' : u.status === 'pendente' ? 'Pendente' : 'Bloqueado';
+            var stCls = u.status === 'ativo' ? 'bg-emerald-100 text-emerald-700' : u.status === 'pendente' ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700';
+            var tipoLabel = u.tipo === 'comprador' ? 'Comprador' : u.tipo === 'vendedor' ? 'Vendedor' : 'Comprador e Vendedor';
+            var tipoCls = u.tipo === 'comprador' ? 'bg-blue-100 text-blue-700' : u.tipo === 'vendedor' ? 'bg-emerald-100 text-emerald-700' : 'bg-purple-100 text-purple-700';
+            var html = '<div class="text-center mb-4"><div class="w-16 h-16 rounded-full '+u.cor+' text-white text-xl font-bold flex items-center justify-center mx-auto">'+u.avatar+'</div><h3 class="font-display font-bold text-marca-900 text-lg mt-3">'+u.nome+'</h3><p class="text-sm text-gray-500">'+u.email+'</p><div class="flex gap-2 mt-2 justify-center"><span class="text-xs font-semibold px-3 py-1 rounded-full '+stCls+'">'+stLabel+'</span><span class="text-xs font-semibold px-3 py-1 rounded-full '+tipoCls+'">'+tipoLabel+'</span></div></div>';
+            html += '<div class="grid grid-cols-2 gap-3 mb-4"><div class="bg-gray-50 rounded-xl p-3 text-center"><p class="text-xs text-gray-500">CPF</p><p class="text-sm font-semibold text-marca-900">'+u.cpf+'</p></div><div class="bg-gray-50 rounded-xl p-3 text-center"><p class="text-xs text-gray-500">Função</p><p class="text-sm font-semibold text-marca-900">'+u.role+'</p></div><div class="bg-gray-50 rounded-xl p-3 text-center"><p class="text-xs text-gray-500">Pedidos</p><p class="text-sm font-semibold text-marca-900">'+u.pedidos+'</p></div><div class="bg-gray-50 rounded-xl p-3 text-center"><p class="text-xs text-gray-500">GMV</p><p class="text-sm font-semibold text-marca-900">'+brl(u.gmv)+'</p></div></div>';
+            html += '<div class="bg-gray-50 rounded-xl p-3 mb-4"><p class="text-xs text-gray-500">Cadastro</p><p class="text-sm font-semibold text-marca-900">'+dataBR(u.cadastro)+'</p></div>';
+            html += '<div class="flex gap-2">';
+            if (u.status === 'ativo') {
+                html += '<button onclick="painel_admin_bloquearUsuario('+u.id+');fecharModal()" class="flex-1 py-2.5 text-sm font-semibold text-red-600 bg-red-50 border border-red-200 rounded-xl active:scale-95 transition-all hover:bg-red-100">Bloquear</button>';
+            } else {
+                html += '<button onclick="painel_admin_desbloquearUsuario('+u.id+');fecharModal()" class="flex-1 py-2.5 text-sm font-semibold text-emerald-600 bg-emerald-50 border border-emerald-200 rounded-xl active:scale-95 transition-all hover:bg-emerald-100">Desbloquear</button>';
+            }
+            html += '<button onclick="painel_admin_contatarUsuario('+u.id+');fecharModal()" class="flex-1 py-2.5 text-sm font-semibold text-white bg-marca-600 rounded-xl active:scale-95 transition-all hover:bg-marca-700">Contatar</button>';
+            html += '</div>';
+            abrirModal(html, 'Detalhes do Usuário');
+        }
+
+        function painel_admin_bloquearUsuario(id) {
+            var u = usuarios.find(function(x){ return x.id === id; });
+            if (u) { u.status = 'bloqueado'; painel_admin_renderizarUsuarios(); toast('Usuário bloqueado com sucesso', 'info'); }
+        }
+        function painel_admin_desbloquearUsuario(id) {
+            var u = usuarios.find(function(x){ return x.id === id; });
+            if (u) { u.status = 'ativo'; painel_admin_renderizarUsuarios(); toast('Usuário desbloqueado com sucesso', 'ok'); }
+        }
+        function painel_admin_contatarUsuario(id) {
+            var u = usuarios.find(function(x){ return x.id === id; });
+            if (u) toast('E-mail de contato enviado para ' + u.email, 'ok');
+        }
+
+        function painel_admin_abrirDetalheVendedor(rank) {
+            var v = vendedoresTop.find(function(x){ return x.rank === rank; });
+            if (!v) return;
+            var html = '<div class="text-center mb-4"><div class="w-14 h-14 rounded-full '+v.cor+' text-white text-lg font-bold flex items-center justify-center mx-auto">'+v.avatar+'</div><h3 class="font-display font-bold text-marca-900 text-lg mt-3">'+v.nome+'</h3><span class="inline-block mt-1 text-xs font-bold px-3 py-1 rounded-full bg-marca-100 text-marca-700">Posição #'+v.rank+' no ranking</span></div>';
+            html += '<div class="grid grid-cols-2 gap-3 mb-4"><div class="bg-gray-50 rounded-xl p-3 text-center"><p class="text-xs text-gray-500">Vendas (mês)</p><p class="text-lg font-bold text-marca-900">'+v.vendas+'</p></div><div class="bg-gray-50 rounded-xl p-3 text-center"><p class="text-xs text-gray-500">GMV (mês)</p><p class="text-lg font-bold text-marca-900">'+brl(v.gmv)+'</p></div></div>';
+            html += '<div class="bg-marca-50 rounded-xl p-3 mb-4"><p class="text-xs text-gray-600">Ticket médio</p><p class="text-sm font-bold text-marca-900">'+brl(Math.round(v.gmv / v.vendas))+'</p></div>';
+            html += '<div class="flex gap-2"><button onclick="fecharModal();mostrarTela(\'gestao-vendedores\')" class="flex-1 py-2.5 text-sm font-semibold text-white bg-marca-600 rounded-xl active:scale-95 transition-all hover:bg-marca-700">Ver Perfil Completo</button><button onclick="fecharModal()" class="flex-1 py-2.5 text-sm font-semibold text-gray-600 bg-gray-100 rounded-xl active:scale-95 transition-all hover:bg-gray-200">Fechar</button></div>';
+            abrirModal(html, 'Detalhe do Vendedor');
+        }
+
+        function painel_admin_trocarAba(aba) {
+            var abas = ['visao','usuarios','alertas'];
+            abas.forEach(function(a) {
+                var btn = document.getElementById('aba-' + a);
+                var conteudo = document.getElementById('conteudo-' + a);
+                if (a === aba) {
+                    btn.classList.add('bg-marca-900','text-white');
+                    btn.classList.remove('text-gray-500');
+                    if (conteudo) conteudo.classList.remove('hidden');
+                } else {
+                    btn.classList.remove('bg-marca-900','text-white');
+                    btn.classList.add('text-gray-500');
+                    if (conteudo) conteudo.classList.add('hidden');
+                }
+            });
+        }
+
+        if (typeof mostrarTela !== 'undefined') {
+            var original = mostrarTela;
+            mostrarTela = function(id) {
+                if (id === 'painel-admin') {
+                    painel_admin_renderizarVendedoresTop();
+                    painel_admin_renderizarUsuarios();
+                    painel_admin_renderizarAlertas();
+                }
+                original(id);
+            };
+        }
+
+        painel_admin_renderizarVendedoresTop();
+        painel_admin_renderizarUsuarios();
+        painel_admin_renderizarAlertas();
+    })();
+    </script>
+</section>
+
     <!-- TELAS -->
         </main>
 
