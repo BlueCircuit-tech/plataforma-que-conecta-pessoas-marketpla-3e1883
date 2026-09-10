@@ -2289,6 +2289,515 @@ document.addEventListener('DOMContentLoaded', function() {
       </script>
     </section>
 
+    <section data-tela="chat" class="hidden">
+        <!-- LISTA DE CONVERSAS -->
+        <div id="chat-lista-view">
+            <div class="px-4 pt-4 pb-2">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="font-display text-xl font-bold text-cinza-900">Mensagens</h2>
+                        <p class="text-xs text-cinza-500 mt-0.5">3 conversas não lidas</p>
+                    </div>
+                    <button onclick="toast('Novo contato em breve','info')" class="w-9 h-9 rounded-full bg-marca-50 flex items-center justify-center text-marca-700 hover:bg-marca-100 transition active:scale-95">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    </button>
+                </div>
+                <div class="relative mb-4">
+                    <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-cinza-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <input type="text" id="chat-busca" placeholder="Buscar conversas..." oninput="chat_buscar(this.value)" class="w-full pl-10 pr-4 py-2.5 bg-white border border-cinza-200 rounded-xl text-sm text-cinza-800 placeholder:text-cinza-400 focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition">
+                </div>
+            </div>
+            <div id="chat-lista-conteudo" class="overflow-y-auto" style="height: calc(100% - 130px);">
+                <!-- Conversa 1 - Vendedor -->
+                <div onclick="chat_abrirConversa(0)" class="chat-conversa-item flex items-center gap-3 px-4 py-3 hover:bg-marca-50/50 transition cursor-pointer border-b border-cinza-100 active:bg-marca-50">
+                    <div class="relative flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-verde-400 to-verde-600 flex items-center justify-center text-white font-bold text-sm">MC</div>
+                        <span class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-verde-500 rounded-full border-2 border-white"></span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between">
+                            <span class="font-semibold text-sm text-cinza-900">Mercado Central</span>
+                            <span class="text-xs text-cinza-400 flex-shrink-0">14:32</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-0.5">
+                            <p class="text-sm text-cinza-500 truncate pr-2">Pedido confirmado! Seu café especial chega amanhã ☕</p>
+                            <span class="chat-badge flex-shrink-0 bg-marca-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">2</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Conversa 2 - Suporte -->
+                <div onclick="chat_abrirConversa(1)" class="chat-conversa-item flex items-center gap-3 px-4 py-3 hover:bg-marca-50/50 transition cursor-pointer border-b border-cinza-100 active:bg-marca-50">
+                    <div class="relative flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-marca-500 to-marca-700 flex items-center justify-center text-white font-bold text-sm">SC</div>
+                        <span class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-verde-500 rounded-full border-2 border-white"></span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between">
+                            <span class="font-semibold text-sm text-cinza-900">Suporte SiCardi</span>
+                            <span class="text-xs text-cinza-400 flex-shrink-0">Ontem</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-0.5">
+                            <p class="text-sm text-cinza-500 truncate pr-2">Seu cartão virtual foi gerado com sucesso!</p>
+                            <span class="chat-badge flex-shrink-0 bg-marca-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">1</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Conversa 3 - Vendedora -->
+                <div onclick="chat_abrirConversa(2)" class="chat-conversa-item flex items-center gap-3 px-4 py-3 hover:bg-marca-50/50 transition cursor-pointer border-b border-cinza-100 active:bg-marca-50">
+                    <div class="relative flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-rosa-400 to-rosa-600 flex items-center justify-center text-white font-bold text-sm">AL</div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between">
+                            <span class="font-semibold text-sm text-cinza-900">Ana Costura</span>
+                            <span class="text-xs text-cinza-400 flex-shrink-0">Seg</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-0.5">
+                            <p class="text-sm text-cinza-500 truncate pr-2">A barra já está pronta! Posso entregar hoje à tarde 😊</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Conversa 4 - Entregador -->
+                <div onclick="chat_abrirConversa(3)" class="chat-conversa-item flex items-center gap-3 px-4 py-3 hover:bg-marca-50/50 transition cursor-pointer border-b border-cinza-100 active:bg-marca-50">
+                    <div class="relative flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-laranja-400 to-laranja-600 flex items-center justify-center text-white font-bold text-sm">RS</div>
+                        <span class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-cinza-400 rounded-full border-2 border-white"></span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between">
+                            <span class="font-semibold text-sm text-cinza-400">Rafael Entregas</span>
+                            <span class="text-xs text-cinza-400 flex-shrink-0">12/01</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-0.5">
+                            <p class="text-sm text-cinza-400 truncate pr-2">Entrega realizada com sucesso!</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Conversa 5 - Vendedor Eletrônicos -->
+                <div onclick="chat_abrirConversa(4)" class="chat-conversa-item flex items-center gap-3 px-4 py-3 hover:bg-marca-50/50 transition cursor-pointer border-b border-cinza-100 active:bg-marca-50">
+                    <div class="relative flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-ciano-400 to-ciano-600 flex items-center justify-center text-white font-bold text-sm">TP</div>
+                        <span class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-verde-500 rounded-full border-2 border-white"></span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between">
+                            <span class="font-semibold text-sm text-cinza-900">TechPeça</span>
+                            <span class="text-xs text-cinza-400 flex-shrink-0">10/01</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-0.5">
+                            <p class="text-sm text-cinza-500 truncate pr-2">O cabo HDMI chegou! Obrigado pela compra 👍</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Conversa 6 - Restaurante -->
+                <div onclick="chat_abrirConversa(5)" class="chat-conversa-item flex items-center gap-3 px-4 py-3 hover:bg-marca-50/50 transition cursor-pointer border-b border-cinza-100 active:bg-marca-50">
+                    <div class="relative flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-white font-bold text-sm">SS</div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between">
+                            <span class="font-semibold text-sm text-cinza-900">Sabor Caseiro</span>
+                            <span class="text-xs text-cinza-400 flex-shrink-0">08/01</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-0.5">
+                            <p class="text-sm text-cinza-500 truncate pr-2">Promoção do dia: marmita fitness por R$ 18,90!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONVERSA ABERTA -->
+        <div id="chat-conversa-view" class="hidden h-full flex flex-col">
+            <div id="chat-conversa-cabecalho" class="flex items-center gap-3 px-4 py-3 bg-white border-b border-cinza-200 flex-shrink-0">
+                <button onclick="chat_voltarLista()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-cinza-100 transition active:scale-95 -ml-1">
+                    <svg class="w-5 h-5 text-cinza-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div id="chat-avatar-container" class="relative flex-shrink-0">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-verde-400 to-verde-600 flex items-center justify-center text-white font-bold text-xs">MC</div>
+                    <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-verde-500 rounded-full border-2 border-white"></span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h3 id="chat-contato-nome" class="font-semibold text-sm text-cinza-900 truncate">Mercado Central</h3>
+                    <p id="chat-contato-status" class="text-xs text-verde-600">Online</p>
+                </div>
+                <button onclick="chat_verInfo()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-cinza-100 transition active:scale-95">
+                    <svg class="w-5 h-5 text-cinza-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><circle cx="12" cy="10" r="1.5" fill="currentColor"/><path stroke-width="2" d="M12 14.5v3"/></svg>
+                </button>
+            </div>
+            <div id="chat-mensagens" class="flex-1 overflow-y-auto px-3 py-3 space-y-2" style="background: linear-gradient(180deg, #F1F5F9 0%, #E2E8F0 100%);">
+                <!-- Mensagens serão inseridas via JS -->
+            </div>
+            <div id="chat-digitando" class="hidden px-4 py-1.5">
+                <div class="flex items-center gap-2">
+                    <div class="flex gap-1">
+                        <span class="w-2 h-2 bg-marca-400 rounded-full animate-bounce" style="animation-delay:0ms"></span>
+                        <span class="w-2 h-2 bg-marca-400 rounded-full animate-bounce" style="animation-delay:150ms"></span>
+                        <span class="w-2 h-2 bg-marca-400 rounded-full animate-bounce" style="animation-delay:300ms"></span>
+                    </div>
+                    <span id="chat-digitando-nome" class="text-xs text-cinza-500">Mercado Central está digitando...</span>
+                </div>
+            </div>
+            <div id="chat-anexos-panel" class="hidden bg-white border-t border-cinza-200 px-4 py-3">
+                <p class="text-xs font-semibold text-cinza-600 mb-2 uppercase tracking-wider">Anexar</p>
+                <div class="flex gap-3">
+                    <button onclick="chat_anexar('foto')" class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-marca-50 transition active:scale-95">
+                        <div class="w-10 h-10 rounded-full bg-verde-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-verde-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        </div>
+                        <span class="text-xs text-cinza-600">Foto</span>
+                    </button>
+                    <button onclick="chat_anexar('pedido')" class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-marca-50 transition active:scale-95">
+                        <div class="w-10 h-10 rounded-full bg-azul-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                        </div>
+                        <span class="text-xs text-cinza-600">Pedido</span>
+                    </button>
+                    <button onclick="chat_anexar('localizacao')" class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-marca-50 transition active:scale-95">
+                        <div class="w-10 h-10 rounded-full bg-rosa-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-rosa-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243A8 8 0 1117.657 16.657z"/><circle cx="12" cy="11" r="1.5" fill="currentColor"/></svg>
+                        </div>
+                        <span class="text-xs text-cinza-600">Localização</span>
+                    </button>
+                    <button onclick="chat_anexar('contato')" class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-marca-50 transition active:scale-95">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                        </div>
+                        <span class="text-xs text-cinza-600">Contato</span>
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white border-t border-cinza-200 px-3 py-2.5 flex items-end gap-2 flex-shrink-0">
+                <button onclick="chat_toggleAnexos()" class="w-9 h-9 flex items-center justify-center rounded-full text-cinza-500 hover:bg-cinza-100 transition active:scale-95 flex-shrink-0 mb-0.5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 000 2.828 2 2 0 002.828 0L20 9M5 12h14"/></svg>
+                </button>
+                <div class="flex-1 relative">
+                    <input type="text" id="chat-input" placeholder="Escreva uma mensagem..." onkeydown="chat_teclaEnter(event)" class="w-full px-4 py-2.5 bg-cinza-100 rounded-full text-sm text-cinza-800 placeholder:text-cinza-400 focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:bg-white transition" style="padding-right: 40px;">
+                    <button onclick="chat_enviarVoz()" class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center rounded-full text-cinza-400 hover:text-marca-600 hover:bg-marca-50 transition active:scale-95">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                    </button>
+                </div>
+                <button onclick="chat_enviarMensagem()" class="w-9 h-9 flex items-center justify-center rounded-full bg-marca-600 text-white hover:bg-marca-700 transition active:scale-95 flex-shrink-0 mb-0.5 shadow-md shadow-marca-600/20">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    (function() {
+        const conversas = [
+            {
+                nome: 'Mercado Central',
+                iniciais: 'MC',
+                cor: 'from-verde-400 to-verde-600',
+                online: true,
+                badge: 2,
+                ultimaMsg: 'Pedido confirmado! Seu café especial chega amanhã ☕',
+                hora: '14:32',
+                mensagens: [
+                    { de: 'eles', texto: 'Olá! Bem-vindo ao Mercado Central 😊 Como posso ajudar?', hora: '14:10', lida: true },
+                    { de: 'eu', texto: 'Oi! Eu gostaria de saber se o café especial da Bahia está disponível.', hora: '14:12', lida: true },
+                    { de: 'eles', texto: 'Sim, temos! É o nosso café gourmet 100% arábica, direto do sul da Bahia. R$ 42,90 o pacote de 500g.', hora: '14:14', lida: true },
+                    { de: 'eu', texto: 'Perfeito! Vou pegar 2 pacotes então.', hora: '14:20', lida: true },
+                    { de: 'eles', texto: 'Ótima escolha! 💚 Vou montar o pedido pra você.', hora: '14:22', lida: true },
+                    { de: 'eles', texto: 'Pedido confirmado! Seu café especial chega amanhã ☕', hora: '14:32', lida: false },
+                    { de: 'eles', texto: 'Frete grátis para compras acima de R$ 80!', hora: '14:32', lida: false },
+                ]
+            },
+            {
+                nome: 'Suporte SiCardi',
+                iniciais: 'SC',
+                cor: 'from-marca-500 to-marca-700',
+                online: true,
+                badge: 1,
+                ultimaMsg: 'Seu cartão virtual foi gerado com sucesso!',
+                hora: 'Ontem',
+                mensagens: [
+                    { de: 'eles', texto: 'Olá! Sou o atendente virtual do Suporte SiCardi. Em que posso ajudar?', hora: '10:00', lida: true },
+                    { de: 'eu', texto: 'Oi! Eu quero gerar um cartão virtual para compras online. É possível?', hora: '10:05', lida: true },
+                    { de: 'eles', texto: 'Claro! O cartão virtual SiCardi é gratuito e seguro. Você pode criar diretamente pelo app em Carteira → Cartão Virtual.', hora: '10:07', lida: true },
+                    { de: 'eu', texto: 'Consegui! E os limites?', hora: '10:15', lida: true },
+                    { de: 'eles', texto: 'Seu cartão virtual usa o limite disponível da sua conta. Você pode definir um limite separado na configuração.', hora: '10:17', lida: true },
+                    { de: 'eles', texto: 'Seu cartão virtual foi gerado com sucesso!', hora: '10:20', lida: false },
+                ]
+            },
+            {
+                nome: 'Ana Costura',
+                iniciais: 'AL',
+                cor: 'from-rosa-400 to-rosa-600',
+                online: false,
+                badge: 0,
+                ultimaMsg: 'A barra já está pronta! Posso entregar hoje à tarde 😊',
+                hora: 'Seg',
+                mensagens: [
+                    { de: 'eu', texto: 'Oi Ana! O estado da barra de calça jeans?', hora: '09:00', lida: true },
+                    { de: 'eles', texto: 'Oi! Estou terminando o barramento agora, deve ficar pronta até o final do dia.', hora: '09:15', lida: true },
+                    { de: 'eu', texto: 'Perfeito! Me avisa quando estiver pronta.', hora: '09:16', lida: true },
+                    { de: 'eles', texto: 'A barra já está pronta! Posso entregar hoje à tarde 😊', hora: '14:00', lida: true },
+                ]
+            },
+            {
+                nome: 'Rafael Entregas',
+                iniciais: 'RS',
+                cor: 'from-laranja-400 to-laranja-600',
+                online: false,
+                badge: 0,
+                ultimaMsg: 'Entrega realizada com sucesso!',
+                hora: '12/01',
+                mensagens: [
+                    { de: 'eles', texto: 'Boa tarde! Sou o Rafael, vou fazer sua entrega.', hora: '14:00', lida: true },
+                    { de: 'eu', texto: 'Oi Rafael! Estou no endereço, pode subir.', hora: '14:20', lida: true },
+                    { de: 'eles', texto: 'Já estou no 3º andar. Chego em 2 minutos.', hora: '14:22', lida: true },
+                    { de: 'eles', texto: 'Entrega realizada com sucesso!', hora: '14:30', lida: true },
+                ]
+            },
+            {
+                nome: 'TechPeça',
+                iniciais: 'TP',
+                cor: 'from-ciano-400 to-ciano-600',
+                online: true,
+                badge: 0,
+                ultimaMsg: 'O cabo HDMI chegou! Obrigado pela compra 👍',
+                hora: '10/01',
+                mensagens: [
+                    { de: 'eu', texto: 'Olá! Vocês têm cabo HDMI 2.1 de 2 metros?', hora: '11:00', lida: true },
+                    { de: 'eles', texto: 'Temos sim! R$ 59,90. A entrega é em até 2 dias úteis.', hora: '11:10', lida: true },
+                    { de: 'eu', texto: 'Perfeito, vou pegar um.', hora: '11:15', lida: true },
+                    { de: 'eles', texto: 'O cabo HDMI chegou! Obrigado pela compra 👍', hora: '16:00', lida: true },
+                ]
+            },
+            {
+                nome: 'Sabor Caseiro',
+                iniciais: 'SS',
+                cor: 'from-amber-500 to-amber-700',
+                online: false,
+                badge: 0,
+                ultimaMsg: 'Promoção do dia: marmita fitness por R$ 18,90!',
+                hora: '08/01',
+                mensagens: [
+                    { de: 'eles', texto: 'Oi! Aqui é o Sabor Caseiro. Hoje temos promoção especial! 🍱', hora: '11:30', lida: true },
+                    { de: 'eles', texto: 'Promoção do dia: marmita fitness por R$ 18,90!', hora: '11:30', lida: true },
+                ]
+            }
+        ];
+
+        let conversaAtual = null;
+        let anexosAbertos = false;
+
+        window.chat_abrirConversa = function(index) {
+            conversaAtual = index;
+            const conv = conversas[index];
+            conv.badge = 0;
+
+            document.getElementById('chat-contato-nome').textContent = conv.nome;
+            document.getElementById('chat-digitando-nome').textContent = conv.nome + ' está digitando...';
+            const statusEl = document.getElementById('chat-contato-status');
+            statusEl.textContent = conv.online ? 'Online' : 'Offline';
+            statusEl.className = conv.online ? 'text-xs text-verde-600' : 'text-xs text-cinza-400';
+
+            const avatarContainer = document.getElementById('chat-avatar-container');
+            avatarContainer.innerHTML = '<div class="w-10 h-10 rounded-full bg-gradient-to-br ' + conv.cor + ' flex items-center justify-center text-white font-bold text-xs">' + conv.iniciais + '</div>' + (conv.online ? '<span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-verde-500 rounded-full border-2 border-white"></span>' : '');
+
+            document.getElementById('chat-lista-view').classList.add('hidden');
+            document.getElementById('chat-conversa-view').classList.remove('hidden');
+            document.getElementById('chat-conversa-view').classList.add('flex');
+
+            chat_renderMensagens();
+            chat_atualizarLista();
+            chat_fecharAnexos();
+            setTimeout(() => {
+                const el = document.getElementById('chat-mensagens');
+                el.scrollTop = el.scrollHeight;
+            }, 50);
+        };
+
+        window.chat_renderMensagens = function() {
+            const container = document.getElementById('chat-mensagens');
+            const conv = conversas[conversaAtual];
+            let html = '<div class="flex justify-center"><span class="text-xs text-cinza-400 bg-cinza-200/60 px-3 py-1 rounded-full">Hoje</span></div>';
+
+            conv.mensagens.forEach(function(msg) {
+                if (msg.de === 'eu') {
+                    html += '<div class="flex justify-end"><div class="max-w-[75%] bg-marca-600 text-white px-3.5 py-2 rounded-2xl rounded-br-md shadow-sm"><p class="text-sm leading-relaxed">' + msg.texto + '</p><span class="text-[10px] text-marca-200 mt-1 block text-right">' + msg.hora + ' ✓✓</span></div></div>';
+                } else {
+                    html += '<div class="flex justify-start"><div class="max-w-[75%] bg-white text-cinza-800 px-3.5 py-2 rounded-2xl rounded-bl-md shadow-sm border border-cinza-100"><p class="text-sm leading-relaxed">' + msg.texto + '</p><span class="text-[10px] text-cinza-400 mt-1 block text-left">' + msg.hora + (msg.lida ? '' : ' • Não lida') + '</span></div></div>';
+                }
+            });
+            container.innerHTML = html;
+        };
+
+        window.chat_voltarLista = function() {
+            document.getElementById('chat-conversa-view').classList.add('hidden');
+            document.getElementById('chat-conversa-view').classList.remove('flex');
+            document.getElementById('chat-lista-view').classList.remove('hidden');
+            conversaAtual = null;
+            chat_fecharAnexos();
+        };
+
+        window.chat_enviarMensagem = function() {
+            const input = document.getElementById('chat-input');
+            const texto = input.value.trim();
+            if (!texto) return;
+
+            const agora = new Date();
+            const hora = agora.getHours().toString().padStart(2, '0') + ':' + agora.getMinutes().toString().padStart(2, '0');
+            conversas[conversaAtual].mensagens.push({ de: 'eu', texto: texto, hora: hora, lida: true });
+            conversas[conversaAtual].ultimaMsg = texto;
+            conversas[conversaAtual].hora = hora;
+            input.value = '';
+            chat_renderMensagens();
+            chat_atualizarLista();
+
+            const el = document.getElementById('chat-mensagens');
+            el.scrollTop = el.scrollHeight;
+
+            setTimeout(function() {
+                chat_simularResposta();
+            }, 1500 + Math.random() * 2000);
+        };
+
+        window.chat_simularResposta = function() {
+            const digitando = document.getElementById('chat-digitando');
+            digitando.classList.remove('hidden');
+            const el = document.getElementById('chat-mensagens');
+            el.scrollTop = el.scrollHeight;
+
+            const respostas = [
+                'Perfeito! Vou verificar isso para você.',
+                'Entendi! Deixa eu confirmar aqui no sistema.',
+                'Ótimo! Vou resolver isso agora mesmo.',
+                'Pode deixar! Estou anotando aqui.',
+                'Sem problemas! Qualquer coisa é só chamar.',
+                'Perfeito, já estou providenciando! 👍',
+            ];
+            const resposta = respostas[Math.floor(Math.random() * respostas.length)];
+
+            setTimeout(function() {
+                digitando.classList.add('hidden');
+                const agora = new Date();
+                const hora = agora.getHours().toString().padStart(2, '0') + ':' + agora.getMinutes().toString().padStart(2, '0');
+                conversas[conversaAtual].mensagens.push({ de: 'eles', texto: resposta, hora: hora, lida: false });
+                conversas[conversaAtual].ultimaMsg = resposta;
+                conversas[conversaAtual].hora = hora;
+                chat_renderMensagens();
+                chat_atualizarLista();
+                el.scrollTop = el.scrollHeight;
+            }, 2000 + Math.random() * 1500);
+        };
+
+        window.chat_teclaEnter = function(e) {
+            if (e.key === 'Enter') {
+                chat_enviarMensagem();
+            }
+        };
+
+        window.chat_enviarVoz = function() {
+            toast('Toque para falar...', 'info');
+            setTimeout(function() {
+                const agora = new Date();
+                const hora = agora.getHours().toString().padStart(2, '0') + ':' + agora.getMinutes().toString().padStart(2, '0');
+                conversas[conversaAtual].mensagens.push({ de: 'eu', texto: '🎤 Mensagem de voz (0:08)', hora: hora, lida: true });
+                conversas[conversaAtual].ultimaMsg = '🎤 Mensagem de voz';
+                conversas[conversaAtual].hora = hora;
+                chat_renderMensagens();
+                chat_atualizarLista();
+                var el = document.getElementById('chat-mensagens');
+                el.scrollTop = el.scrollHeight;
+            }, 1500);
+        };
+
+        window.chat_toggleAnexos = function() {
+            chat_atualizarLista();
+        };
+
+        window.chat_fecharAnexos = function() {
+            document.getElementById('chat-anexos-panel').classList.add('hidden');
+            anexosAbertos = false;
+        };
+
+        window.chat_anexar = function(tipo) {
+            const conv = conversas[conversaAtual];
+            const agora = new Date();
+            const hora = agora.getHours().toString().padStart(2, '0') + ':' + agora.getMinutes().toString().padStart(2, '0');
+            let texto = '';
+            switch(tipo) {
+                case 'foto':
+                    texto = '📸 Foto do pedido compartilhada';
+                    break;
+                case 'pedido':
+                    texto = '📦 Compartilhou dados do pedido #' + (1000 + Math.floor(Math.random() * 9000)) + ' — R$ ' + (Math.random() * 200 + 20).toFixed(2).replace('.', ',');
+                    break;
+                case 'localizacao':
+                    texto = '📍 Localização: Av. Paulista, 1578, São Paulo — SP';
+                    break;
+                case 'contato':
+                    texto = '👤 Compartilhou contato: (11) 99999-9999';
+                    break;
+            }
+            conv.mensagens.push({ de: 'eu', texto: texto, hora: hora, lida: true });
+            conv.ultimaMsg = texto;
+            conv.hora = hora;
+            chat_renderMensagens();
+            chat_atualizarLista();
+            chat_fecharAnexos();
+            var el = document.getElementById('chat-mensagens');
+            el.scrollTop = el.scrollHeight;
+            toast('Anexo enviado!', 'ok');
+        };
+
+        window.chat_atualizarLista = function() {
+            const items = document.querySelectorAll('.chat-conversa-item');
+            items.forEach(function(item, i) {
+                const badge = item.querySelector('.chat-badge');
+                if (badge && conversas[i]) {
+                    if (conversas[i].badge > 0) {
+                        badge.classList.remove('hidden');
+                        badge.textContent = conversas[i].badge;
+                    } else {
+                        badge.classList.add('hidden');
+                    }
+                }
+            });
+        };
+
+        window.chat_buscar = function(termo) {
+            const termoLower = termo.toLowerCase();
+            const items = document.querySelectorAll('.chat-conversa-item');
+            let visiveis = 0;
+            items.forEach(function(item, i) {
+                const nome = conversas[i].nome.toLowerCase();
+                const msg = conversas[i].ultimaMsg.toLowerCase();
+                if (nome.includes(termoLower) || msg.includes(termoLower)) {
+                    item.classList.remove('hidden');
+                    visiveis++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        };
+
+        window.chat_verInfo = function() {
+            const conv = conversas[conversaAtual];
+            const html = '<div class="space-y-3">' +
+                '<div class="flex justify-center">' +
+                    '<div class="w-20 h-20 rounded-full bg-gradient-to-br ' + conv.cor + ' flex items-center justify-center text-white font-bold text-xl">' + conv.iniciais + '</div>' +
+                '</div>' +
+                '<div class="text-center">' +
+                    '<h3 class="font-display font-bold text-lg text-cinza-900">' + conv.nome + '</h3>' +
+                    '<p class="text-sm text-cinza-500">' + (conv.online ? 'Online agora' : 'Offline') + '</p>' +
+                '</div>' +
+                '<div class="grid grid-cols-2 gap-2 pt-2">' +
+                    '<button onclick="fecharModal(); toast(\'Contato bloqueado\', \'info\')" class="w-full py-2.5 px-4 bg-cinza-100 text-cinza-700 rounded-xl text-sm font-medium hover:bg-cinza-200 transition active:scale-95">🔕 Silenciar</button>' +
+                    '<button onclick="fecharModal(); toast(\'Conversa limpa\', \'ok\')" class="w-full py-2.5 px-4 bg-cinza-100 text-cinza-700 rounded-xl text-sm font-medium hover:bg-cinza-200 transition active:scale-95">🗑️ Limpar chat</button>' +
+                '</div>' +
+                '<button onclick="fecharModal(); chat_voltarLista()" class="w-full py-2.5 bg-red-50 text-red-600 rounded-xl text-sm font-medium hover:bg-red-100 transition active:scale-95">Excluir conversa</button>' +
+            '</div>';
+            abrirModal(html, 'Informações da conversa');
+        };
+    })();
+    </script>
+
     <!-- TELAS -->
         </main>
 
