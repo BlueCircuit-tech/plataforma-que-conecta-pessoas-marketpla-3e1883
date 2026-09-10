@@ -1789,6 +1789,506 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 </script>
 
+    <section data-tela="meus-pedidos" class="hidden">
+      <div class="px-5 pt-2 pb-24 animate-fadeIn">
+        <!-- Header da tela -->
+        <div class="mb-5">
+          <h1 class="font-display text-2xl font-bold text-marca-900 tracking-tight">Meus Pedidos</h1>
+          <p class="text-sm text-gray-500 mt-1">Acompanhe suas compras e entregas</p>
+        </div>
+
+        <!-- Cards de resumo -->
+        <div class="grid grid-cols-4 gap-2 mb-5">
+          <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 text-center">
+            <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-1.5">
+              <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <span id="count-processando" class="text-lg font-bold text-marca-900">1</span>
+            <p class="text-[10px] text-gray-400 leading-tight">Processando</p>
+          </div>
+          <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 text-center">
+            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-1.5">
+              <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h2m6-4a2 2 0 012 2v0a2 2 0 01-2 2h-2m6-4a2 2 0 012 2v0a2 2 0 01-2 2h-2"/></svg>
+            </div>
+            <span id="count-enviado" class="text-lg font-bold text-marca-900">1</span>
+            <p class="text-[10px] text-gray-400 leading-tight">Enviado</p>
+          </div>
+          <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 text-center">
+            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-1.5">
+              <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span id="count-entregue" class="text-lg font-bold text-marca-900">2</span>
+            <p class="text-[10px] text-gray-400 leading-tight">Entregues</p>
+          </div>
+          <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 text-center">
+            <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-1.5">
+              <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </div>
+            <span id="count-cancelado" class="text-lg font-bold text-marca-900">1</span>
+            <p class="text-[10px] text-gray-400 leading-tight">Cancelados</p>
+          </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="mb-4 space-y-3">
+          <div class="relative">
+            <svg class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+            <input id="mp-busca" type="text" placeholder="Buscar por número do pedido..."
+              class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-marca-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 transition-all">
+          </div>
+          <div class="flex gap-2 overflow-x-auto pb-1 -mx-5 px-5 scrollbar-hide">
+            <button onclick="meus_pedidos_filtrar('todos')" data-filtro="todos" class="mp-filtro-btn flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-marca-900 text-white">Todos</button>
+            <button onclick="meus_pedidos_filtrar('processando')" data-filtro="processando" class="mp-filtro-btn flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">Processando</button>
+            <button onclick="meus_pedidos_filtrar('enviado')" data-filtro="enviado" class="mp-filtro-btn flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">Enviado</button>
+            <button onclick="meus_pedidos_filtrar('entregue')" data-filtro="entregue" class="mp-filtro-btn flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">Entregues</button>
+            <button onclick="meus_pedidos_filtrar('cancelado')" data-filtro="cancelado" class="mp-filtro-btn flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">Cancelados</button>
+          </div>
+        </div>
+
+        <!-- Lista de pedidos -->
+        <div id="mp-lista" class="space-y-3">
+        </div>
+
+        <!-- Estado vazio -->
+        <div id="mp-vazio" class="hidden text-center py-12">
+          <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <p class="text-sm font-semibold text-gray-600">Nenhum pedido encontrado</p>
+          <p class="text-xs text-gray-400 mt-1">Tente ajustar os filtros ou faça uma nova busca</p>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        const pedidos = [
+          {
+            id: 'SIC-28491',
+            data: '2025-12-08',
+            previsao: '2025-12-15',
+            status: 'processando',
+            valor: 249.90,
+            produto: 'Fone de Ouvido Bluetooth ANC Pro',
+            imagem: '🎧',
+            imagemCor: 'bg-indigo-100',
+            vendedor: 'TechSound Brasil',
+            vendedorAvatar: 'TS',
+            vendedorCor: 'bg-indigo-500',
+            itens: 1,
+            pagamento: 'Cartão SiCardi • 3x',
+            endereco: 'Rua Augusta, 1200 - Consolação, São Paulo - SP',
+            rastreio: null
+          },
+          {
+            id: 'SIC-28456',
+            data: '2025-12-05',
+            previsao: '2025-12-12',
+            status: 'enviado',
+            valor: 189.90,
+            produto: 'Tênis Running AirFlex 300',
+            imagem: '👟',
+            imagemCor: 'bg-orange-100',
+            vendedor: 'EsporteTotal',
+            vendedorAvatar: 'ET',
+            vendedorCor: 'bg-orange-500',
+            itens: 1,
+            pagamento: 'Pix • à vista',
+            endereco: 'Av. Paulista, 900 - Bela Vista, São Paulo - SP',
+            rastreio: { codigo: 'BR123456789BR', transportadora: 'Correios SEDEX', previsao: '12/12/2025', local: 'Centro de Distribuição - Osasco, SP' }
+          },
+          {
+            id: 'SIC-28320',
+            data: '2025-11-28',
+            previsao: '2025-12-03',
+            status: 'entregue',
+            valor: 67.50,
+            produto: 'Kit 3 Camisetas Algodão Premium',
+            imagem: '👕',
+            imagemCor: 'bg-sky-100',
+            vendedor: 'ModaFácil',
+            vendedorAvatar: 'MF',
+            vendedorCor: 'bg-sky-500',
+            itens: 3,
+            pagamento: 'Cartão SiCardi • 2x',
+            endereco: 'Rua das Flores, 45 - Jardins, São Paulo - SP',
+            rastreio: { codigo: 'BR987654321BR', transportadora: 'Correios PAC', previsao: '03/12/2025', local: 'Entregue - destinatário ausente, deixado com porteiro' },
+            avaliado: false
+          },
+          {
+            id: 'SIC-28210',
+            data: '2025-11-22',
+            previsao: '2025-11-29',
+            status: 'entregue',
+            valor: 420.00,
+            produto: 'Smartwatch FitBand X7',
+            imagem: '⌚',
+            imagemCor: 'bg-emerald-100',
+            vendedor: 'GadgetsBR',
+            vendedorAvatar: 'GB',
+            vendedorCor: 'bg-emerald-500',
+            itens: 1,
+            pagamento: 'Cartão SiCardi • 10x sem juros',
+            endereco: 'Alameda Santos, 210 - Jardins, São Paulo - SP',
+            rastreio: { codigo: 'BR456789123BR', transportadora: 'Loggi Express', previsao: '29/11/2025', local: 'Entregue - assinado por M. Silva' },
+            avaliado: true
+          },
+          {
+            id: 'SIC-28105',
+            data: '2025-11-18',
+            previsao: '2025-11-22',
+            status: 'cancelado',
+            valor: 159.90,
+            produto: 'Mochila Impermeável Urban 25L',
+            imagem: '🎒',
+            imagemCor: 'bg-gray-100',
+            vendedor: 'BagAqui',
+            vendedorAvatar: 'BA',
+            vendedorCor: 'bg-gray-500',
+            itens: 1,
+            pagamento: 'Pix • à vista',
+            endereco: 'Rua Haddock Lobo, 350 - Cerqueira César, São Paulo - SP',
+            rastreio: null,
+            motivoCancelamento: 'Produto fora de estoque - cancelado pelo vendedor'
+          },
+          {
+            id: 'SIC-27980',
+            data: '2025-11-10',
+            previsao: '2025-11-17',
+            status: 'entregue',
+            valor: 112.00,
+            produto: 'Cafeteira Expresso Automática Mini',
+            imagem: '☕',
+            imagemCor: 'bg-amber-100',
+            vendedor: 'Casa&Cozinha',
+            vendedorAvatar: 'CC',
+            vendedorCor: 'bg-amber-600',
+            itens: 1,
+            pagamento: 'Cartão de débito',
+            endereco: 'Rua Oscar Freire, 100 - Jardins, São Paulo - SP',
+            rastreio: { codigo: 'BR321654987BR', transportadora: 'Correios SEDEX', previsao: '17/11/2025', local: 'Entregue - assinado por recepcionista' },
+            avaliado: false
+          },
+          {
+            id: 'SIC-27845',
+            data: '2025-11-02',
+            previsao: '2025-11-08',
+            status: 'cancelado',
+            valor: 89.90,
+            produto: 'Kit 2 Almofadas Decorativas Veludo',
+            imagem: '🛋️',
+            imagemCor: 'bg-purple-100',
+            vendedor: 'DecoraFácil',
+            vendedorAvatar: 'DF',
+            vendedorCor: 'bg-purple-500',
+            itens: 2,
+            pagamento: 'Cartão SiCardi • 1x',
+            endereco: 'Rua Pamplona, 200 - Jardim América, São Paulo - SP',
+            rastreio: null,
+            motivoCancelamento: 'Cancelado pelo cliente - desistência da compra'
+          },
+          {
+            id: 'SIC-27690',
+            data: '2025-10-25',
+            previsao: '2025-10-30',
+            status: 'entregue',
+            valor: 312.40,
+            produto: 'Perfume Importado Acqua Di Mare 100ml',
+            imagem: '🧴',
+            imagemCor: 'bg-cyan-100',
+            vendedor: 'Belleza Importados',
+            vendedorAvatar: 'BI',
+            vendedorCor: 'bg-cyan-500',
+            itens: 1,
+            pagamento: 'Cartão SiCardi • 6x',
+            endereco: 'Av. Rebouças, 1500 - Pinheiros, São Paulo - SP',
+            rastreio: { codigo: 'BR789123456BR', transportadora: 'DHL Express', previsao: '30/10/2025', local: 'Entregue - assinado por J. Oliveira' },
+            avaliado: true
+          }
+        ];
+
+        let filtroAtual = 'todos';
+        let termoBusca = '';
+
+        function meus_pedidos_getStatusInfo(status) {
+          switch(status) {
+            case 'processando': return { label: 'Processando', bg: 'bg-amber-100', text: 'text-amber-700', dot: 'bg-amber-500' };
+            case 'enviado': return { label: 'Enviado', bg: 'bg-blue-100', text: 'text-blue-700', dot: 'bg-blue-500' };
+            case 'entregue': return { label: 'Entregue', bg: 'bg-green-100', text: 'text-green-700', dot: 'bg-green-500' };
+            case 'cancelado': return { label: 'Cancelado', bg: 'bg-red-100', text: 'text-red-700', dot: 'bg-red-500' };
+            default: return { label: status, bg: 'bg-gray-100', text: 'text-gray-600', dot: 'bg-gray-400' };
+          }
+        }
+
+        function meus_pedidos_renderizar() {
+          const lista = document.getElementById('mp-lista');
+          const vazio = document.getElementById('mp-vazio');
+
+          let filtrados = pedidos.filter(p => {
+            const matchFiltro = filtroAtual === 'todos' || p.status === filtroAtual;
+            const matchBusca = termoBusca === '' || p.id.toLowerCase().includes(termoBusca.toLowerCase());
+            return matchFiltro && matchBusca;
+          });
+
+          filtrados.sort((a, b) => new Date(b.data) - new Date(a.data));
+
+          if (filtrados.length === 0) {
+            lista.innerHTML = '';
+            vazio.classList.remove('hidden');
+            return;
+          }
+
+          vazio.classList.add('hidden');
+          lista.innerHTML = filtrados.map(p => {
+            const st = meus_pedidos_getStatusInfo(p.status);
+            const iconesAcoes = [];
+            if (p.status === 'enviado' && p.rastreio) {
+              iconesAcoes.push('<button onclick="meus_pedidos_rastrear(\'' + p.id + '\')" class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 transition active:scale-90" title="Rastrear"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243A8 8 0 1117.657 16.657z"/><circle cx="12" cy="11" r="1.5" fill="currentColor"/></svg></button>');
+              iconesAcoes.push('<button onclick="meus_pedidos_verMapa(\'' + p.id + '\')" class="w-8 h-8 flex items-center justify-center rounded-full bg-green-50 text-green-600 hover:bg-green-100 transition active:scale-90" title="Ver no mapa"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m0 0l6 3m-6-3V7m6 10l-5.447-2.724A1 1 0 0115 13.382V2.618a1 1 0 011.447-.894L21 4m0 13V7"/></svg></button>');
+            }
+            if (p.status === 'entregue') {
+              const btnText = p.avaliado ? 'Avaliado' : 'Avaliar';
+              iconesAcoes.push('<button onclick="meus_pedidos_avaliar(\'' + p.id + '\')" id="btn-avaliar-' + p.id + '" class="w-8 h-8 flex items-center justify-center rounded-full ' + (p.avaliado ? 'bg-gray-100 text-gray-400' : 'bg-yellow-50 text-yellow-600 hover:bg-yellow-100') + ' transition active:scale-90" title="Avaliar"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></button>');
+              if (p.avaliado) {
+                iconesAcoes.push('<button onclick="meus_pedidos_recomprar(\'' + p.id + '\')" class="w-8 h-8 flex items-center justify-center rounded-full bg-marca-50 text-marca-600 hover:bg-marca-100 transition active:scale-90" title="Comprar novamente"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></button>');
+              }
+            }
+            if (p.status === 'cancelado' && p.motivoCancelamento) {
+              iconesAcoes.push('<button onclick="meus_pedidos_verCancelamento(\'' + p.id + '\')" class="w-8 h-8 flex items-center justify-center rounded-full bg-red-50 text-red-500 hover:bg-red-100 transition active:scale-90" title="Motivo do cancelamento"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></button>');
+            }
+
+            return '<div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden active:shadow-md transition-all cursor-pointer" onclick="meus_pedidos_abrirDetalhe(\'' + p.id + '\')">' +
+              '<div class="p-4">' +
+                '<div class="flex gap-3">' +
+                  '<div class="w-16 h-16 rounded-xl ' + p.imagemCor + ' flex items-center justify-center text-2xl flex-shrink-0">' + p.imagem + '</div>' +
+                  '<div class="flex-1 min-w-0">' +
+                    '<div class="flex items-start justify-between gap-2">' +
+                      '<div class="min-w-0">' +
+                        '<p class="text-sm font-semibold text-marca-900 truncate">' + p.produto + '</p>' +
+                        '<p class="text-xs text-gray-500 mt-0.5">' + p.vendedor + '</p>' +
+                        '<p class="text-[10px] text-gray-400 mt-0.5">Pedido ' + p.id + ' • ' + dataBR(p.data) + '</p>' +
+                      '</div>' +
+                      '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ' + st.bg + ' ' + st.text + ' flex-shrink-0">' +
+                        '<span class="w-1.5 h-1.5 rounded-full ' + st.dot + '"></span>' + st.label +
+                      '</span>' +
+                    '</div>' +
+                  '</div>' +
+                '</div>' +
+                '<div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-50">' +
+                  '<div class="flex items-center gap-2">' +
+                    '<div class="w-6 h-6 rounded-full ' + p.vendedorCor + ' flex items-center justify-center text-[10px] font-bold text-white">' + p.vendedorAvatar + '</div>' +
+                    '<span class="text-xs text-gray-500">' + p.itens + ' ' + (p.itens > 1 ? 'itens' : 'item') + '</span>' +
+                  '</div>' +
+                  '<div class="flex items-center gap-3">' +
+                    '<span class="text-sm font-bold text-marca-900">' + brl(p.valor) + '</span>' +
+                    '<div class="flex gap-1.5">' + iconesAcoes.join('') + '</div>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+              (p.status === 'enviado' ? '<div class="px-4 pb-3"><div class="bg-blue-50 rounded-xl p-3 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg><p class="text-xs text-blue-700 font-medium truncate">Código: <span class="font-mono font-bold">' + p.rastreio.codigo + '</span></p></div></div>' : '') +
+              (p.status === 'entregue' && !p.avaliado ? '<div class="px-4 pb-3"><div class="bg-yellow-50 rounded-xl p-3 flex items-center gap-2"><svg class="w-4 h-4 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><p class="text-xs text-yellow-700 font-medium">Avalie este produto e o vendedor</p></div></div>' : '') +
+            '</div>';
+          }).join('');
+
+          meus_pedidos_atualizarContadores();
+        }
+
+        function meus_pedidos_atualizarContadores() {
+          let p = 0, e = 0, ent = 0, c = 0;
+          pedidos.forEach(x => { if (x.status === 'processando') p++; else if (x.status === 'enviado') e++; else if (x.status === 'entregue') ent++; else if (x.status === 'cancelado') c++; });
+          const elP = document.getElementById('count-processando');
+          const elE = document.getElementById('count-enviado');
+          const elEnt = document.getElementById('count-entregue');
+          const elC = document.getElementById('count-cancelado');
+          if (elP) elP.textContent = p;
+          if (elE) elE.textContent = e;
+          if (elEnt) elElEnt = ent; elEnt.textContent = ent;
+          if (elC) elC.textContent = c;
+        }
+
+        function meus_pedidos_filtrar(status) {
+          filtroAtual = status;
+          document.querySelectorAll('.mp-filtro-btn').forEach(b => {
+            const isActive = b.dataset.filtro === status;
+            b.className = 'mp-filtro-btn flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ' + (isActive ? 'bg-marca-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200');
+          });
+          meus_pedidos_renderizar();
+        }
+
+        function meus_pedidos_abrirDetalhe(pedidoId) {
+          const p = pedidos.find(x => x.id === pedidoId);
+          if (!p) return;
+          const st = meus_pedidos_getStatusInfo(p.status);
+          let corpo = '';
+          corpo += '<div class="space-y-4">';
+          corpo += '<div class="flex items-center gap-4">';
+          corpo += '<div class="w-20 h-20 rounded-2xl ' + p.imagemCor + ' flex items-center justify-center text-4xl flex-shrink-0">' + p.imagem + '</div>';
+          corpo += '<div class="flex-1">';
+          corpo += '<h3 class="font-display font-bold text-marca-900 text-base">' + p.produto + '</h3>';
+          corpo += '<p class="text-xs text-gray-500 mt-0.5">' + p.vendedor + '</p>';
+          corpo += '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ' + st.bg + ' ' + st.text + ' mt-1.5 inline-block">';
+          corpo += '<span class="w-1.5 h-1.5 rounded-full ' + st.dot + '"></span>' + st.label + '</span>';
+          corpo += '</div></div>';
+
+          corpo += '<div class="grid grid-cols-2 gap-3">';
+          corpo += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Pedido</p><p class="text-sm font-bold text-marca-900 mt-0.5">' + p.id + '</p></div>';
+          corpo += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Valor total</p><p class="text-sm font-bold text-marca-900 mt-0.5">' + brl(p.valor) + '</p></div>';
+          corpo += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Data</p><p class="text-sm font-bold text-marca-900 mt-0.5">' + dataBR(p.data) + '</p></div>';
+          corpo += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Pagamento</p><p class="text-sm font-bold text-marca-900 mt-0.5">' + p.pagamento + '</p></div>';
+          corpo += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Previsão entrega</p><p class="text-sm font-bold text-marca-900 mt-0.5">' + dataBR(p.previsao) + '</p></div>';
+          corpo += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Itens</p><p class="text-sm font-bold text-marca-900 mt-0.5">' + p.itens + ' ' + (p.itens > 1 ? 'itens' : 'item') + '</p></div>';
+          corpo += '</div>';
+
+          corpo += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold mb-1">Endereço de entrega</p><p class="text-sm text-marca-900">' + p.endereco + '</p></div>';
+
+          if (p.status === 'enviado' && p.rastreio) {
+            corpo += '<div class="bg-blue-50 rounded-xl p-4"><p class="text-[10px] text-blue-500 uppercase tracking-wider font-semibold mb-2">Rastreamento</p>';
+            corpo += '<p class="text-xs text-blue-800 font-mono font-bold mb-1">' + p.rastreio.codigo + '</p>';
+            corpo += '<p class="text-xs text-blue-700">' + p.rastreio.transportadora + '</p>';
+            corpo += '<p class="text-xs text-blue-600 mt-1">📦 ' + p.rastreio.local + '</p>';
+            corpo += '<p class="text-xs text-blue-600 mt-0.5">📅 Previsão: ' + p.rastreio.previsao + '</p>';
+            corpo += '</div>';
+          }
+
+          if (p.status === 'entregue' && p.avaliado) {
+            corpo += '<div class="bg-yellow-50 rounded-xl p-4 flex items-center gap-2"><svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><p class="text-sm text-yellow-700 font-medium">Você já avaliou este pedido</p></div>';
+          }
+
+          if (p.status === 'cancelado' && p.motivoCancelamento) {
+            corpo += '<div class="bg-red-50 rounded-xl p-4"><p class="text-[10px] text-red-500 uppercase tracking-wider font-semibold mb-1">Motivo do cancelamento</p><p class="text-sm text-red-700">' + p.motivoCancelamento + '</p></div>';
+          }
+
+          corpo += '</div>';
+
+          abrirModal(corpo, 'Pedido ' + p.id);
+        }
+
+        function meus_pedidos_rastrear(pedidoId) {
+          const p = pedidos.find(x => x.id === pedidoId);
+          if (!p || !p.rastreio) return;
+          const r = p.rastreio;
+          let html = '';
+          html += '<div class="space-y-4">';
+          html += '<div class="bg-blue-50 rounded-2xl p-5 text-center">';
+          html += '<div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">';
+          html += '<svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>';
+          html += '<p class="text-xs text-blue-500 font-semibold uppercase tracking-wider">Código de rastreamento</p>';
+          html += '<p class="text-lg font-mono font-bold text-marca-900 mt-1">' + r.codigo + '</p>';
+          html += '</div>';
+          html += '<div class="space-y-3">';
+          html += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Transportadora</p><p class="text-sm font-semibold text-marca-900 mt-0.5">' + r.transportadora + '</p></div>';
+          html += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Previsão de entrega</p><p class="text-sm font-semibold text-marca-900 mt-0.5">' + r.previsao + '</p></div>';
+          html += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Status atual</p><p class="text-sm font-semibold text-marca-900 mt-0.5">' + r.local + '</p></div>';
+          html += '</div>';
+          html += '<div class="bg-gray-100 rounded-2xl h-40 relative overflow-hidden flex items-center justify-center"><svg class="w-20 h-20 text-gray-300" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m0 0l6 3m-6-3V7m6 10l-5.447-2.724A1 1 0 0115 13.382V2.618a1 1 0 011.447-.894L21 4m0 13V7"/></svg><span class="absolute text-[10px] text-gray-400 font-medium">Mapa de rota</span></div>';
+          html += '</div>';
+          abrirModal(html, 'Rastrear Pedido');
+        }
+
+        function meus_pedidos_verMapa(pedidoId) {
+          const p = pedidos.find(x => x.id === pedidoId);
+          if (!p) return;
+          let html = '';
+          html += '<div class="space-y-4">';
+          html += '<div class="bg-gray-100 rounded-2xl h-52 relative overflow-hidden flex items-center justify-center">';
+          html += '<svg class="w-24 h-24 text-gray-300" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m0 0l6 3m-6-3V7m6 10l-5.447-2.724A1 1 0 0115 13.382V2.618a1 1 0 011.447-.894L21 4m0 13V7"/></svg>';
+          html += '<div class="absolute inset-0 flex items-center justify-center"><div class="bg-white rounded-xl shadow-lg p-3 text-center"><svg class="w-6 h-6 text-red-500 mx-auto mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg><p class="text-[10px] font-bold text-marca-900">Local atual</p><p class="text-[9px] text-gray-500">' + p.rastreio.local + '</p></div></div>';
+          html += '</div>';
+          html += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Endereço de entrega</p><p class="text-sm text-marca-900 mt-0.5">' + p.endereco + '</p></div>';
+          html += '</div>';
+          abrirModal(html, 'Rota de Entrega');
+        }
+
+        function meus_pedidos_avaliar(pedidoId) {
+          const p = pedidos.find(x => x.id === pedidoId);
+          if (!p) return;
+          let html = '';
+          html += '<div class="space-y-4">';
+          html += '<div class="text-center mb-2">';
+          html += '<div class="w-16 h-16 rounded-2xl ' + p.imagemCor + ' flex items-center justify-center text-3xl mx-auto mb-2">' + p.imagem + '</div>';
+          html += '<p class="text-sm font-semibold text-marca-900">' + p.produto + '</p>';
+          html += '<p class="text-xs text-gray-500">' + p.vendedor + '</p>';
+          html += '</div>';
+          html += '<div><p class="text-xs font-semibold text-marca-900 mb-2">Avalie o produto</p>';
+          html += '<div class="flex gap-2" id="estrelas-produto">';
+          for (let i = 1; i <= 5; i++) {
+            html += '<button onclick="meus_pedidos_setEstrela(' + i + ', \'produto\')" class="estrela-btn text-2xl text-gray-300 hover:text-yellow-400 transition" data-valor="' + i + '">★</button>';
+          }
+          html += '</div></div>';
+          html += '<div><p class="text-xs font-semibold text-marca-900 mb-2">Avalie o vendedor</p>';
+          html += '<div class="flex gap-2" id="estrelas-vendedor">';
+          for (let i = 1; i <= 5; i++) {
+            html += '<button onclick="meus_pedidos_setEstrela(' + i + ', \'vendedor\')" class="estrela-btn text-2xl text-gray-300 hover:text-yellow-400 transition" data-valor="' + i + '">★</button>';
+          }
+          html += '</div></div>';
+          html += '<div><p class="text-xs font-semibold text-marca-900 mb-1.5">Comentário (opcional)</p>';
+          html += '<textarea id="mp-comentario" rows="3" placeholder="Conte sua experiência..." class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm text-marca-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-marca-500/30 focus:border-marca-500 resize-none"></textarea></div>';
+          html += '<button onclick="meus_pedidos_enviarAvaliacao(\'' + p.id + '\')" class="w-full py-3 bg-marca-900 text-white font-semibold text-sm rounded-xl active:scale-[0.97] transition-all">Enviar Avaliação</button>';
+          html += '</div>';
+          abrirModal(html, 'Avaliar Pedido ' + p.id);
+        }
+
+        window.meus_pedidos_setEstrela = function(valor, tipo) {
+          const container = document.getElementById(tipo === 'produto' ? 'estrelas-produto' : 'estrelas-vendedor');
+          if (!container) return;
+          container.querySelectorAll('.estrela-btn').forEach(btn => {
+            const v = parseInt(btn.dataset.valor);
+            btn.classList.toggle('text-yellow-400', v <= valor);
+            btn.classList.toggle('text-gray-300', v > valor);
+          });
+        };
+
+        window.meus_pedidos_enviarAvaliacao = function(pedidoId) {
+          const p = pedidos.find(x => x.id === pedidoId);
+          if (p) {
+            p.avaliado = true;
+          }
+          fecharModal();
+          meus_pedidos_renderizar();
+          toast('Avaliação enviada com sucesso! Obrigado pelo feedback.', 'ok');
+        };
+
+        window.meus_pedidos_recomprar = function(pedidoId) {
+          const p = pedidos.find(x => x.id === pedidoId);
+          if (!p) return;
+          toast(p.produto + ' adicionado ao carrinho!', 'ok');
+          setTimeout(() => mostrarTela('checkout-e-pagamento'), 600);
+        };
+
+        window.meus_pedidos_verCancelamento = function(pedidoId) {
+          const p = pedidos.find(x => x.id === pedidoId);
+          if (!p) return;
+          let html = '<div class="space-y-3">';
+          html += '<div class="flex items-center gap-3 bg-red-50 rounded-xl p-4">';
+          html += '<div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg></div>';
+          html += '<div><p class="text-sm font-semibold text-red-800">Pedido cancelado</p><p class="text-xs text-red-600 mt-0.5">' + p.motivoCancelamento + '</p></div>';
+          html += '</div>';
+          html += '<div class="bg-gray-50 rounded-xl p-3"><p class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Valor estornado</p>';
+          html += '<p class="text-lg font-bold text-green-600 mt-0.5">' + brl(p.valor) + '</p>';
+          html += '<p class="text-xs text-gray-500">Devolvido em até 5 dias úteis</p></div>';
+          html += '</div>';
+          abrirModal(html, 'Cancelamento — ' + p.id);
+        };
+
+        window.meus_pedidos_abrirDetalhe = meus_pedidos_abrirDetalhe;
+        window.meus_pedidos_filtrar = meus_pedidos_filtrar;
+        window.meus_pedidos_rastrear = meus_pedidos_rastrear;
+        window.meus_pedidos_verMapa = meus_pedidos_verMapa;
+        window.meus_pedidos_avaliar = meus_pedidos_avaliar;
+        window.meus_pedidos_recomprar = meus_pedidos_recomprar;
+        window.meus_pedidos_verCancelamento = meus_pedidos_verCancelamento;
+        window.meus_pedidos_setEstrela = window.meus_pedidos_setEstrela;
+        window.meus_pedidos_enviarAvaliacao = window.meus_pedidos_enviarAvaliacao;
+
+        document.getElementById('mp-busca').addEventListener('input', function(e) {
+          termoBusca = e.target.value.trim();
+          meus_pedidos_renderizar();
+        });
+
+        meus_pedidos_renderizar();
+      })();
+      </script>
+    </section>
+
     <!-- TELAS -->
         </main>
 
