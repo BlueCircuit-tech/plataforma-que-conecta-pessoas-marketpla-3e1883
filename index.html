@@ -438,6 +438,253 @@
 })();
 </script>
 
+    <section data-tela="catalogo-e-busca" class="hidden">
+      <div id="catalogoContainer" class="fade-in">
+        <div class="px-4 pt-3 pb-2">
+          <div class="flex items-center justify-between mb-1">
+            <div>
+              <h1 class="text-xl font-display font-bold text-slate-800">Catálogo</h1>
+              <p id="resultadosContador" class="text-xs text-slate-500 mt-0.5">6 resultados</p>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="catalogo_e_busca_abrirFiltros()" class="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center active:scale-95 transition-all shadow-sm relative">
+                <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+                <span id="filtroBadge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-blue-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+              </button>
+            </div>
+          </div>
+          <div class="relative mt-2">
+            <svg class="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input id="campoBusca" type="text" placeholder="Buscar produtos, serviços..." oninput="catalogo_e_busca_filtrar()" class="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-slate-200 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all shadow-sm">
+          </div>
+        </div>
+        <div class="flex gap-2 px-4 pb-3 overflow-x-auto scrollbar-hide">
+          <button onclick="catalogo_e_busca_toggleCategoria('todos')" data-cat="todos" class="catalogo-e-busca_cat-chip active-chip flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-600 text-white transition-all">Todos</button>
+          <button onclick="catalogo_e_busca_toggleCategoria('eletronicos')" data-cat="eletronicos" class="catalogo-e-busca_cat-chip flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 transition-all">Eletrônicos</button>
+          <button onclick="catalogo_e_busca_toggleCategoria('servicos')" data-cat="servicos" class="catalogo-e-busca_cat-chip flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 transition-all">Serviços</button>
+          <button onclick="catalogo_e_busca_toggleCategoria('moda')" data-cat="moda" class="catalogo-e-busca_cat-chip flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 transition-all">Moda</button>
+          <button onclick="catalogo_e_busca_toggleCategoria('casa')" data-cat="casa" class="catalogo-e-busca_cat-chip flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 transition-all">Casa</button>
+          <button onclick="catalogo_e_busca_toggleCategoria('beleza')" data-cat="beleza" class="catalogo-e-busca_cat-chip flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 transition-all">Beleza</button>
+        </div>
+        <div class="flex items-center justify-between px-4 pb-2">
+          <div id="ordenarContainer" class="relative">
+            <button onclick="catalogo_e_busca_toggleSort()" class="flex items-center gap-1 text-xs text-slate-500 font-medium">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/></svg>
+              <span id="sortLabel">Relevância</span>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div id="sortDropdown" class="hidden absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-30 w-48">
+              <button onclick="catalogo_e_busca_setSort('relevancia')" class="w-full text-left px-3 py-2 text-xs text-slate-700 hover:bg-blue-50 sort-option" data-sort="relevancia">Relevância</button>
+              <button onclick="catalogo_e_busca_setSort('menor-preco')" class="w-full text-left px-3 py-2 text-xs text-slate-700 hover:bg-blue-50 sort-option" data-sort="menor-preco">Menor Preço</button>
+              <button onclick="catalogo_e_busca_setSort('maior-preco')" class="w-full text-left px-3 py-2 text-xs text-slate-700 hover:bg-blue-50 sort-option" data-sort="maior-preco">Maior Preço</button>
+              <button onclick="catalogo_e_busca_setSort('melhor-nota')" class="w-full text-left px-3 py-2 text-xs text-slate-700 hover:bg-blue-50 sort-option" data-sort="melhor-nota">Melhor Avaliação</button>
+            </div>
+          </div>
+          <span class="text-[10px] text-slate-400">Ordenar por</span>
+        </div>
+        <div id="catalogoGrid" class="grid grid-cols-2 gap-3 px-4 pb-24"></div>
+        <div id="vazioState" class="hidden px-4 pb-24 text-center pt-12">
+          <svg class="w-16 h-16 text-slate-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <p class="text-sm text-slate-500 font-medium">Nenhum resultado encontrado</p>
+          <p class="text-xs text-slate-400 mt-1">Tente ajustar seus filtros</p>
+          <button onclick="catalogo_e_busca_limparFiltros()" class="mt-4 px-5 py-2 bg-blue-600 text-white text-xs font-semibold rounded-xl active:scale-95 transition-all">Limpar filtros</button>
+        </div>
+      </div>
+      <div id="filtroOverlay" class="hidden fixed inset-0 bg-black/40 z-40" onclick="catalogo_e_busca_fecharFiltros()"></div>
+      <div id="filtroPanel" class="fixed top-0 right-0 h-full w-80 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="flex items-center justify-between p-4 border-b border-slate-100">
+          <h3 class="text-base font-display font-bold text-slate-800">Filtros</h3>
+          <button onclick="catalogo_e_busca_fecharFiltros()" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100 active:scale-95 transition-all">
+            <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-4 space-y-5">
+          <div>
+            <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 block">Faixa de Preço</label>
+            <div class="flex gap-2">
+              <div class="flex-1 relative">
+                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-xs text-slate-400">R$</span>
+                <input id="filtroPrecoMin" type="number" placeholder="Mín" oninput="catalogo_e_busca_filtrar()" class="w-full pl-7 pr-2 py-2 rounded-lg border border-slate-200 text-xs text-slate-700 focus:outline-none focus:border-blue-500">
+              </div>
+              <span class="text-slate-400 self-center text-xs">até</span>
+              <div class="flex-1 relative">
+                <span class="absolute left-2 top-1/2 -translate-y-1/2 text-xs text-slate-400">R$</span>
+                <input id="filtroPrecoMax" type="number" placeholder="Máx" oninput="catalogo_e_busca_filtrar()" class="w-full pl-7 pr-2 py-2 rounded-lg border border-slate-200 text-xs text-slate-700 focus:outline-none focus:border-blue-500">
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 block">Avaliação Mínima</label>
+            <div class="flex gap-2">
+              <button onclick="catalogo_e_busca_setRating(0)" data-rating="0" class="rating-btn flex-1 py-1.5 rounded-lg text-xs font-medium bg-blue-600 text-white transition-all">Todos</button>
+              <button onclick="catalogo_e_busca_setRating(3)" data-rating="3" class="rating-btn flex-1 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 transition-all">3+ ★</button>
+              <button onclick="catalogo_e_busca_setRating(4)" data-rating="4" class="rating-btn flex-1 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 transition-all">4+ ★</button>
+              <button onclick="catalogo_e_busca_setRating(4.5)" data-rating="4.5" class="rating-btn flex-1 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 transition-all">4.5+ ★</button>
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 block">Forma de Pagamento</label>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="pix" onchange="catalogo_e_busca_filtrar()" class="pg-check w-4 h-4 rounded text-blue-600 focus:ring-blue-500"><span class="text-sm text-slate-700">Pix</span></label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="cartao" onchange="catalogo_e_busca_filtrar()" class="pg-check w-4 h-4 rounded text-blue-600 focus:ring-blue-500"><span class="text-sm text-slate-700">Cartão de Crédito</span></label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="sicardi" onchange="catalogo_e_busca_filtrar()" class="pg-check w-4 h-4 rounded text-blue-600 focus:ring-blue-500"><span class="text-sm text-slate-700">SiCardi</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 block">Localização</label>
+            <input id="filtroLocal" type="text" placeholder="Cidade ou bairro" oninput="catalogo_e_busca_filtrar()" class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs text-slate-700 placeholder:text-slate-400 focus:outline-none focus:border-blue-500">
+          </div>
+        </div>
+        <div class="p-4 border-t border-slate-100 space-y-2">
+          <button onclick="catalogo_e_busca_limparFiltros()" class="w-full py-2.5 rounded-xl text-sm font-semibold text-slate-600 border border-slate-200 active:scale-95 transition-all">Limpar Filtros</button>
+          <button onclick="catalogo_e_busca_aplicarFiltros()" class="w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 active:scale-95 transition-all">Aplicar (6)</button>
+        </div>
+      </div>
+      <script>
+        const catalogo_produtos = [
+          { id:1, nome:'Fone Bluetooth Pro', vendedor:'TechBrasil', inicial:'T', corAvatar:'bg-blue-100 text-blue-700', nota:4.8, preco:189.90, categoria:'eletronicos', local:'São Paulo, SP', pg:['pix','cartao','sicardi'], entrega:true, avaliacoes:234, gradiente:'from-blue-400 to-blue-600' },
+          { id:2, nome:'Limpeza Residencial Completa', vendedor:'LimpaFácil Serviços', inicial:'L', corAvatar:'bg-emerald-100 text-emerald-700', nota:4.9, preco:250.00, categoria:'servicos', local:'Rio de Janeiro, RJ', pg:['pix','sicardi'], entrega:false, avaliacoes:189, gradiente:'from-emerald-400 to-teal-600' },
+          { id:3, nome:'Camiseta Algodão Premium', vendedor:'ModaEstilo', inicial:'M', corAvatar:'bg-pink-100 text-pink-700', nota:4.5, preco:79.90, categoria:'moda', local:'Curitiba, PR', pg:['pix','cartao'], entrega:true, avaliacoes:156, gradiente:'from-pink-400 to-rose-600' },
+          { id:4, nome:'Kit Organizador de Casa', vendedor:'DecoraLar', inicial:'D', corAvatar:'bg-amber-100 text-amber-700', nota:4.3, preco:129.90, categoria:'casa', local:'Belo Horizonte, MG', pg:['pix','cartao','sicardi'], entrega:true, avaliacoes:98, gradiente:'from-amber-400 to-orange-600' },
+          { id:5, nome:'Kit Skincare Completo', vendedor:'BelezaPura', inicial:'B', corAvatar:'bg-purple-100 text-purple-700', nota:4.7, preco:299.90, categoria:'beleza', local:'Porto Alegre, RS', pg:['pix','cartao','sicardi'], entrega:false, avaliacoes:312, gradiente:'from-purple-400 to-indigo-600' },
+          { id:6, nome:'Smartwatch Fit X200', vendedor:'TechBrasil', inicial:'T', corAvatar:'bg-blue-100 text-blue-700', nota:4.6, preco:450.00, categoria:'eletronicos', local:'São Paulo, SP', pg:['pix','cartao','sicardi'], entrega:true, avaliacoes:167, gradiente:'from-slate-500 to-slate-700' }
+        ];
+        let catalogo_categoria = 'todos';
+        let catalogo_sort = 'relevancia';
+        let catalogo_rating = 0;
+        let catalogo_search = '';
+
+        function catalogo_e_busca_renderizar(lista) {
+          const grid = document.getElementById('catalogoGrid');
+          const vazio = document.getElementById('vazioState');
+          const contador = document.getElementById('resultadosContador');
+          contador.textContent = `${lista.length} resultado${lista.length !== 1 ? 's' : ''}`;
+          if (!lista.length) { grid.classList.add('hidden'); vazio.classList.remove('hidden'); return; }
+          grid.classList.remove('hidden'); vazio.classList.add('hidden');
+          grid.innerHTML = lista.map(p => `
+            <div onclick="catalogo_e_busca_abrirDetalhe(${p.id})" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 active:scale-[0.97] transition-all cursor-pointer">
+              <div class="relative h-32 bg-gradient-to-br ${p.gradiente} flex items-center justify-center">
+                <span class="text-3xl font-display font-bold text-white/30">${p.inicial}</span>
+                ${p.entrega ? '<span class="absolute top-2 left-2 px-2 py-0.5 bg-green-500 text-white text-[9px] font-bold rounded-md flex items-center gap-0.5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Rápido</span>' : ''}
+                <span class="absolute top-2 right-2 px-2 py-0.5 bg-white/90 backdrop-blur text-[10px] font-semibold text-slate-700 rounded-md">${p.pg.includes('sicardi') ? 'SiCardi' : p.pg[0].toUpperCase()}</span>
+              </div>
+              <div class="p-3">
+                <p class="text-xs font-medium text-slate-800 leading-tight line-clamp-2 h-8">${p.nome}</p>
+                <div class="flex items-center gap-1.5 mt-2">
+                  <span class="w-5 h-5 rounded-full ${p.corAvatar} text-[9px] font-bold flex items-center justify-center flex-shrink-0">${p.inicial}</span>
+                  <span class="text-[10px] text-slate-500 truncate">${p.vendedor}</span>
+                </div>
+                <div class="flex items-center justify-between mt-2 pt-2 border-t border-slate-50">
+                  <span class="text-sm font-bold text-slate-800">${p.preco.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</span>
+                  <span class="flex items-center gap-0.5 text-[10px] text-amber-600 font-medium">
+                    <svg class="w-3 h-3 fill-amber-400 text-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    ${p.nota}
+                  </span>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        function catalogo_e_busca_filtrar() {
+          catalogo_search = document.getElementById('campoBusca').value.toLowerCase();
+          const precoMin = parseFloat(document.getElementById('filtroPrecoMin').value) || 0;
+          const precoMax = parseFloat(document.getElementById('filtroPrecoMax').value) || Infinity;
+          const local = document.getElementById('filtroLocal').value.toLowerCase();
+          const pgChecks = [...document.querySelectorAll('.pg-check:checked')].map(c => c.value);
+          let filtrados = catalogo_produtos.filter(p => {
+            if (catalogo_categoria !== 'todos' && p.categoria !== catalogo_categoria) return false;
+            if (catalogo_search && !p.nome.toLowerCase().includes(catalogo_search) && !p.vendedor.toLowerCase().includes(catalogo_search)) return false;
+            if (p.preco < precoMin || p.preco > precoMax) return false;
+            if (p.nota < catalogo_rating) return false;
+            if (local && !p.local.toLowerCase().includes(local)) return false;
+            if (pgChecks.length && !pgChecks.some(pg => p.pg.includes(pg))) return false;
+            return true;
+          });
+          if (catalogo_sort === 'menor-preco') filtrados.sort((a,b) => a.preco - b.preco);
+          else if (catalogo_sort === 'maior-preco') filtrados.sort((a,b) => b.preco - a.preco);
+          else if (catalogo_sort === 'melhor-nota') filtrados.sort((a,b) => b.nota - a.nota);
+          const badge = document.getElementById('filtroBadge');
+          let count = 0;
+          if (catalogo_categoria !== 'todos') count++;
+          if (precoMin > 0 || precoMax < Infinity) count++;
+          if (catalogo_rating > 0) count++;
+          if (pgChecks.length) count++;
+          if (local) count++;
+          if (catalogo_search) count++;
+          if (count > 0) { badge.textContent = count; badge.classList.remove('hidden'); badge.classList.add('flex'); } else { badge.classList.add('hidden'); badge.classList.remove('flex'); }
+          catalogo_e_busca_renderizar(filtrados);
+        }
+
+        function catalogo_e_busca_toggleCategoria(cat) {
+          catalogo_categoria = cat;
+          document.querySelectorAll('.catalogo-e-busca_cat-chip').forEach(b => { b.classList.remove('bg-blue-600','text-white'); b.classList.add('bg-white','text-slate-600','border','border-slate-200'); });
+          const btn = document.querySelector(`[data-cat="${cat}"]`); if (btn) { btn.classList.remove('bg-white','text-slate-600','border','border-slate-200'); btn.classList.add('bg-blue-600','text-white'); }
+          catalogo_e_busca_filtrar();
+        }
+        function catalogo_e_busca_toggleSort() { const d = document.getElementById('sortDropdown'); d.classList.toggle('hidden'); }
+        function catalogo_e_busca_setSort(s) { catalogo_sort = s; document.getElementById('sortLabel').textContent = {relevancia:'Relevância','menor-preco':'Menor Preço','maior-preco':'Maior Preço','melhor-nota':'Melhor Avaliação'}[s]; document.getElementById('sortDropdown').classList.add('hidden'); catalogo_e_busca_filtrar(); }
+        function catalogo_e_busca_setRating(r) { catalogo_rating = r; document.querySelectorAll('.rating-btn').forEach(b => { if (parseFloat(b.dataset.rating) === r) { b.classList.remove('bg-slate-100','text-slate-600'); b.classList.add('bg-blue-600','text-white'); } else { b.classList.remove('bg-blue-600','text-white'); b.classList.add('bg-slate-100','text-slate-600'); } }); catalogo_e_busca_filtrar(); }
+        function catalogo_e_busca_abrirFiltros() { document.getElementById('filtroOverlay').classList.remove('hidden'); document.getElementById('filtroPanel').classList.remove('translate-x-full'); document.getElementById('filtroPanel').classList.add('translate-x-0'); }
+        function catalogo_e_busca_fecharFiltros() { document.getElementById('filtroPanel').classList.remove('translate-x-0'); document.getElementById('filtroPanel').classList.add('translate-x-full'); setTimeout(() => document.getElementById('filtroOverlay').classList.add('hidden'), 300); }
+        function catalogo_e_busca_aplicarFiltros() { catalogo_e_busca_filtrar(); catalogo_e_busca_fecharFiltros(); toast('Filtros aplicados com sucesso', 'ok'); }
+        function catalogo_e_busca_limparFiltros() {
+          document.getElementById('filtroPrecoMin').value = ''; document.getElementById('filtroPrecoMax').value = '';
+          document.getElementById('filtroLocal').value = ''; document.getElementById('campoBusca').value = '';
+          document.querySelectorAll('.pg-check').forEach(c => c.checked = false);
+          catalogo_categoria = 'todos'; catalogo_sort = 'relevancia'; catalogo_rating = 0;
+          document.getElementById('sortLabel').textContent = 'Relevância';
+          document.querySelectorAll('.catalogo-e-busca_cat-chip').forEach(b => { b.classList.remove('bg-blue-600','text-white'); b.classList.add('bg-white','text-slate-600','border','border-slate-200'); });
+          document.querySelector('[data-cat="todos"]').classList.remove('bg-white','text-slate-600','border','border-slate-200'); document.querySelector('[data-cat="todos"]').classList.add('bg-blue-600','text-white');
+          document.querySelectorAll('.rating-btn').forEach(b => { if (parseFloat(b.dataset.rating) === 0) { b.classList.remove('bg-slate-100','text-slate-600'); b.classList.add('bg-blue-600','text-white'); } else { b.classList.remove('bg-blue-600','text-white'); b.classList.add('bg-slate-100','text-slate-600'); } });
+          catalogo_e_busca_filtrar(); toast('Filtros limpos', 'info');
+        }
+        function catalogo_e_busca_abrirDetalhe(id) {
+          const p = catalogo_produtos.find(x => x.id === id);
+          if (!p) return;
+          const html = `
+            <div class="space-y-4">
+              <div class="h-48 rounded-xl bg-gradient-to-br ${p.gradiente} flex items-center justify-center">
+                <span class="text-5xl font-display font-bold text-white/30">${p.inicial}</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-display font-bold text-slate-800">${p.nome}</h3>
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="w-6 h-6 rounded-full ${p.corAvatar} text-xs font-bold flex items-center justify-center">${p.inicial}</span>
+                  <span class="text-sm text-slate-600">${p.vendedor}</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 text-sm">
+                <div class="flex items-center gap-1 text-amber-600"><svg class="w-4 h-4 fill-amber-400 text-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><span class="font-semibold">${p.nota}</span></div>
+                <span class="text-slate-400">·</span>
+                <span class="text-slate-500">${p.avaliacoes} avaliações</span>
+                <span class="text-slate-400">·</span>
+                <span class="text-slate-500">${p.local}</span>
+              </div>
+              <div class="bg-slate-50 rounded-xl p-3 space-y-2">
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Formas de Pagamento</p>
+                <div class="flex flex-wrap gap-1.5">
+                  ${p.pg.includes('pix') ? '<span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-lg">Pix</span>' : ''}
+                  ${p.pg.includes('cartao') ? '<span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-lg">Cartão</span>' : ''}
+                  ${p.pg.includes('sicardi') ? '<span class="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-lg">SiCardi</span>' : ''}
+                </div>
+              </div>
+              <div class="text-2xl font-bold text-slate-800">${p.preco.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</div>
+              <button onclick="catalogo_e_busca_comprar(${p.id})" class="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl active:scale-95 transition-all">Comprar Agora</button>
+            </div>`;
+          abrirModal(html, p.nome);
+        }
+        function catalogo_e_busca_comprar(id) {
+          fecharModal();
+          const p = catalogo_produtos.find(x => x.id === id);
+          toast(`${p.nome} adicionado! Redirecionando para pagamento...`, 'ok');
+          setTimeout(() => mostrarTela('checkout-e-pagamento'), 600);
+        }
+        document.addEventListener('click', function(e) { if (!e.target.closest('#ordenarContainer')) document.getElementById('sortDropdown').classList.add('hidden'); });
+        document.addEventListener('DOMContentLoaded', () => catalogo_e_busca_renderizar(catalogo_produtos));
+      </script>
+    </section>
+
     <!-- TELAS -->
         </main>
 
