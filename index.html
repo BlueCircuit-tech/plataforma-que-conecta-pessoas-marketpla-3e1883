@@ -1356,6 +1356,439 @@ document.addEventListener('DOMContentLoaded', function() {
       })();
     </script>
 
+    <section data-tela="carteira-sicardi" class="hidden">
+  <div class="animate-fadeIn">
+    <!-- Cabeçalho -->
+    <div class="mb-4">
+      <h1 class="font-display text-2xl font-bold text-marca-900">Minha Carteira</h1>
+      <p class="text-sm text-gray-500 mt-0.5">Boa tarde, Maria</p>
+    </div>
+
+    <!-- Cartão Premium -->
+    <div class="relative bg-gradient-to-br from-marca-900 via-marca-800 to-marca-700 rounded-2xl p-5 text-white shadow-xl shadow-marca-900/20 mb-5 overflow-hidden" id="cartao-sicardi">
+      <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+      <div class="flex justify-between items-start mb-6 relative z-10">
+        <div>
+          <p class="text-white/70 text-xs font-medium mb-1">Cartão SiCardi Platinum</p>
+          <p class="font-display text-lg font-bold tracking-wide">•••• •••• •••• 4829</p>
+        </div>
+        <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none">
+          <circle cx="15" cy="20" r="12" fill="#EB001B" opacity="0.9"/>
+          <circle cx="25" cy="20" r="12" fill="#F79E1B" opacity="0.9"/>
+          <path d="M20 10a12 12 0 0 0 0 20" fill="#FF5F00" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="flex justify-between items-end relative z-10">
+        <div>
+          <p class="text-white/60 text-[10px] uppercase tracking-wider mb-0.5">Limite Disponível</p>
+          <p class="font-display text-2xl font-bold" id="limite-disponivel">R$ 4.250,00</p>
+        </div>
+        <div class="text-right">
+          <p class="text-white/60 text-[10px] uppercase tracking-wider mb-0.5">Validade</p>
+          <p class="font-display text-sm font-semibold">12/28</p>
+        </div>
+      </div>
+      <div class="mt-4 pt-3 border-t border-white/10 relative z-10">
+        <div class="flex justify-between items-center">
+          <span class="text-white/60 text-xs">Limite Total</span>
+          <span class="font-display font-semibold text-sm">R$ 6.000,00</span>
+        </div>
+        <div class="mt-1.5 w-full bg-white/10 rounded-full h-1.5">
+          <div class="bg-gradient-to-r from-amber-400 to-amber-300 h-1.5 rounded-full transition-all duration-500" style="width: 71%" id="barra-uso-limite"></div>
+        </div>
+        <p class="text-white/50 text-[10px] mt-1">71% utilizado</p>
+      </div>
+    </div>
+
+    <!-- Indicadores Rápidos -->
+    <div class="grid grid-cols-2 gap-3 mb-5">
+      <div class="bg-white rounded-xl p-3.5 shadow-sm border border-gray-100">
+        <div class="flex items-center gap-2 mb-1.5">
+          <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center">
+            <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-3 2 2 1.5-1.5L13 19l2.5 2 1.5-1.5L19 21z"/></svg>
+          </div>
+          <span class="text-xs text-gray-500 font-medium">Fatura Atual</span>
+        </div>
+        <p class="font-display text-lg font-bold text-marca-900">R$ 1.750,00</p>
+        <p class="text-xs text-gray-400 mt-0.5">Vence 15/02/2026</p>
+      </div>
+      <div class="bg-white rounded-xl p-3.5 shadow-sm border border-gray-100">
+        <div class="flex items-center gap-2 mb-1.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <span class="text-xs text-gray-500 font-medium">Cashback</span>
+        </div>
+        <p class="font-display text-lg font-bold text-emerald-600">R$ 127,50</p>
+        <p class="text-xs text-gray-400 mt-0.5">Acumulado este mês</p>
+      </div>
+    </div>
+
+    <!-- Botões de Ação Rápida -->
+    <div class="grid grid-cols-2 gap-2.5 mb-5">
+      <button onclick="carteira_sicardi_abrirPix()" class="active:scale-95 transition-all bg-marca-600 hover:bg-marca-700 text-white rounded-xl p-3.5 flex items-center gap-2.5 shadow-md shadow-marca-600/20">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span class="text-xs font-semibold text-left">Pagar Fatura</span>
+      </button>
+      <button onclick="carteira_sicardi_aumentoLimite()" class="active:scale-95 transition-all bg-white hover:bg-gray-50 text-marca-900 border border-gray-200 rounded-xl p-3.5 flex items-center gap-2.5 shadow-sm">
+        <svg class="w-5 h-5 flex-shrink-0 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+        <span class="text-xs font-semibold text-left">Aumentar Limite</span>
+      </button>
+      <button onclick="carteira_sicardi_bloquearCartao()" class="active:scale-95 transition-all bg-white hover:bg-gray-50 text-marca-900 border border-gray-200 rounded-xl p-3.5 flex items-center gap-2.5 shadow-sm">
+        <svg class="w-5 h-5 flex-shrink-0 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        <span class="text-xs font-semibold text-left">Bloquear Cartão</span>
+      </button>
+      <button onclick="mostrarTela('meus-pedidos')" class="active:scale-95 transition-all bg-white hover:bg-gray-50 text-marca-900 border border-gray-200 rounded-xl p-3.5 flex items-center gap-2.5 shadow-sm">
+        <svg class="w-5 h-5 flex-shrink-0 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <span class="text-xs font-semibold text-left">Extrato Detalhado</span>
+      </button>
+    </div>
+
+    <!-- Gráfico de Gastos por Categoria -->
+    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 mb-5">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-display font-bold text-marca-900 text-sm">Gastos por Categoria</h3>
+        <span class="text-xs text-gray-400">Janeiro 2026</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <!-- Donut SVG -->
+        <svg viewBox="0 0 120 120" class="w-28 h-28 flex-shrink-0 cursor-pointer" onclick="carteira_sicardi_abrirGrafico()">
+          <circle cx="60" cy="60" r="45" fill="none" stroke="#F1F5F9" stroke-width="14"/>
+          <circle cx="60" cy="60" r="45" fill="none" stroke="#1E3A5F" stroke-width="14" stroke-dasharray="99.5 282.7" stroke-dashoffset="0" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+          <circle cx="60" cy="60" r="45" fill="none" stroke="#2563EB" stroke-width="14" stroke-dasharray="70.7 282.7" stroke-dashoffset="-99.5" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+          <circle cx="60" cy="60" r="45" fill="none" stroke="#93C5FD" stroke-width="14" stroke-dasharray="56.5 282.7" stroke-dashoffset="-170.2" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+          <circle cx="60" cy="60" r="45" fill="none" stroke="#F8FAFC" stroke-width="14" stroke-dasharray="42.4 282.7" stroke-dashoffset="-226.7" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+          <text x="60" y="57" text-anchor="middle" class="font-display font-bold" fill="#1E3A5F" font-size="14">R$ 2.1k</text>
+          <text x="60" y="70" text-anchor="middle" fill="#94A3B8" font-size="8">total</text>
+        </svg>
+        <!-- Legend -->
+        <div class="flex-1 space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-sm bg-marca-900"></div><span class="text-xs text-gray-600">Alimentação</span></div>
+            <span class="text-xs font-semibold text-marca-900">R$ 840</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-sm bg-marca-600"></div><span class="text-xs text-gray-600">Transporte</span></div>
+            <span class="text-xs font-semibold text-marca-900">R$ 600</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-sm bg-sky-300"></div><span class="text-xs text-gray-600">Compras</span></div>
+            <span class="text-xs font-semibold text-marca-900">R$ 480</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-sm bg-gray-100"></div><span class="text-xs text-gray-600">Outros</span></span></div>
+            <span class="text-xs font-semibold text-marca-900">R$ 230</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-[10px] text-gray-400 mt-3 text-center">Toque no gráfico para ver o histórico completo</p>
+    </div>
+
+    <!-- Últimas Transações -->
+    <div class="mb-5">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-display font-bold text-marca-900 text-sm">Últimas Transações</h3>
+        <button onclick="carteira_sicardi_verTodasTransacoes()" class="text-xs text-marca-600 font-semibold hover:text-marca-700 transition-colors">Ver todas</button>
+      </div>
+      <div class="space-y-2.5" id="lista-transacoes">
+        <div class="bg-white rounded-xl p-3.5 flex items-center gap-3 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]" onclick="carteira_sicardi_detalheTransacao('iFood', 'Alimentação', '-R$ 47,90', '15/01/2026', 'aprovada')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6zm4 4h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm text-marca-900 truncate">iFood</p>
+            <p class="text-xs text-gray-400">15/01 · Alimentação</p>
+          </div>
+          <div class="text-right flex-shrink-0">
+            <p class="font-display font-bold text-sm text-red-500">-R$ 47,90</p>
+            <span class="badge badge-ok text-[10px]">Aprovada</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-3.5 flex items-center gap-3 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]" onclick="carteira_sicardi_detalheTransacao('Uber', 'Transporte', '-R$ 23,50', '14/01/2026', 'aprovada')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gray-700 to-black flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 2c-1.1 0-2.1.4-2.8 1.1L4.5 9.6c-.8.8-1.2 1.9-1.2 3.1V20c0 1.1.9 2 2 2h1.5c1.1 0 2-.9 2-2v-2h6v2c0 1.1.9 2 2 2H20c1.1 0 2-.9 2-2v-7.3c0-1.2-.4-2.3-1.2-3.1l-6.2-6.5c-.7-.7-1.7-1.1-2.8-1.1z"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm text-marca-900 truncate">Uber</p>
+            <p class="text-xs text-gray-400">14/01 · Transporte</p>
+          </div>
+          <div class="text-right flex-shrink-0">
+            <p class="font-display font-bold text-sm text-red-500">-R$ 23,50</p>
+            <span class="badge badge-ok text-[10px]">Aprovada</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-3.5 flex items-center gap-3 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]" onclick="carteira_sicardi_detalheTransacao('Magazine Luiza', 'Compras', '-R$ 299,90', '13/01/2026', 'aprovada')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-700 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l4.59-4.58L18 11l-6 6z"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm text-marca-900 truncate">Magazine Luiza</p>
+            <p class="text-xs text-gray-400">13/01 · Compras</p>
+          </div>
+          <div class="text-right flex-shrink-0">
+            <p class="font-display font-bold text-sm text-red-500">-R$ 299,90</p>
+            <span class="badge badge-ok text-[10px]">Aprovada</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-3.5 flex items-center gap-3 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]" onclick="carteira_sicardi_detalheTransacao('Ifood Estorno', 'Alimentação', '+R$ 12,00', '12/01/2026', 'estorno')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm text-marca-900 truncate">Estorno iFood</p>
+            <p class="text-xs text-gray-400">12/01 · Alimentação</p>
+          </div>
+          <div class="text-right flex-shrink-0">
+            <p class="font-display font-bold text-sm text-emerald-600">+R$ 12,00</p>
+            <span class="badge badge-info text-[10px]">Estorno</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-3.5 flex items-center gap-3 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]" onclick="carteira_sicardi_detalheTransacao('Posto Shell', 'Transporte', '-R$ 150,00', '11/01/2026', 'aprovada')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 to-red-500 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm text-marca-900 truncate">Posto Shell</p>
+            <p class="text-xs text-gray-400">11/01 · Transporte</p>
+          </div>
+          <div class="text-right flex-shrink-0">
+            <p class="font-display font-bold text-sm text-red-500">-R$ 150,00</p>
+            <span class="badge badge-ok text-[10px]">Aprovada</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-3.5 flex items-center gap-3 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-all active:scale-[0.98]" onclick="carteira_sicardi_detalheTransacao('Amazon', 'Compras', '-R$ 89,90', '10/01/2026', 'aprovada')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M15.93 17.09c-2.37 1.74-5.8 1.47-7.93-.54.43 2.89 3.2 5.1 6.42 5.1 1.66 0 3.15-.64 4.27-1.68-.73-1.04-1.8-1.83-2.76-2.88zM20.7 14.4c.39-2.38-.56-4.7-2.4-6.19-1.2-1.1-2.72-1.72-4.35-1.78-.03-.2-.08-.4-.16-.58-.2-.67-.63-1.26-1.24-1.67l-.04-.02c-.08-.05-.16-.1-.24-.14-.63-.4-1.36-.51-2.04-.28l-.08.03c-.08.04-.16.08-.23.13-.7.44-1.12 1.16-1.21 1.92l-.02.12v.01c-.03.16-.04.32-.03.49 0 .04 0 .08.01.12.01.1.03.2.06.3.02.07.05.14.09.2.07.14.17.26.29.35.03.03.07.05.11.07.06.04.13.07.2.09.03.01.07.02.1.03.13.03.26.04.4.04h.02c.14 0 .28-.01.42-.04l.12-.03c.07-.02.14-.05.2-.09.04-.03.08-.05.11-.07.12-.09.22-.21.29-.35.04-.06.07-.13.09-.2.03-.1.05-.2.06-.3 0-.04.01-.08.01-.12 0-.17 0-.33-.03-.49l-.02-.12v-.01c-.09-.76-.5-1.48-1.21-1.92-.07-.05-.15-.09-.23-.13l-.08-.03c-.68-.23-1.41-.12-2.04.28-.08.04-.16.09-.24.14l-.04.02c-.61.41-1.04 1-1.24 1.67-.08.18-.13.38-.16.58-1.63.06-3.15.68-4.35 1.78-1.84 1.49-2.79 3.81-2.4 6.19.42 2.6 2.27 4.76 4.74 5.71.17.08.34.15.52.21 1.3.42 2.68.41 3.98-.03 1.33-.45 2.49-1.24 3.33-2.28.1-.14.19-.29.28-.44 1.08-1.78 1.55-3.87 1.3-5.99z"/></svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm text-marca-900 truncate">Amazon</p>
+            <p class="text-xs text-gray-400">10/01 · Compras</p>
+          </div>
+          <div class="text-right flex-shrink-0">
+            <p class="font-display font-bold text-sm text-red-500">-R$ 89,90</p>
+            <span class="badge badge-ok text-[10px]">Aprovada</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Benefícios -->
+    <div class="bg-gradient-to-r from-marca-900 to-marca-800 rounded-xl p-4 text-white mb-5 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4"></div>
+      <div class="relative z-10">
+        <h3 class="font-display font-bold text-sm mb-1">Benefícios SiCardi</h3>
+        <p class="text-white/70 text-xs mb-3">Acumule cashback em todas as compras</p>
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <p class="text-white/60 text-[10px] uppercase tracking-wider">Cashback Acumulado</p>
+            <p class="font-display text-xl font-bold text-amber-300">R$ 127,50</p>
+          </div>
+          <div class="text-right">
+            <p class="text-white/60 text-[10px] uppercase tracking-wider">Próxima meta</p>
+            <p class="font-display text-sm font-semibold">R$ 150,00</p>
+          </div>
+        </div>
+        <div class="w-full bg-white/10 rounded-full h-1.5">
+          <div class="bg-gradient-to-r from-amber-400 to-amber-300 h-1.5 rounded-full" style="width: 85%"></div>
+        </div>
+        <p class="text-white/40 text-[10px] mt-1">Faltam R$ 22,50 para dobrar</p>
+      </div>
+    </div>
+
+    <!-- Parceiros Cashback -->
+    <div class="mb-6">
+      <h3 class="font-display font-bold text-marca-900 text-sm mb-2.5">Parceiros com Cashback</h3>
+      <div class="flex gap-2.5 overflow-x-auto pb-2 -mx-1 px-1">
+        <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex-shrink-0 w-[100px] text-center cursor-pointer hover:shadow-md transition-all" onclick="toast('Cashback de 5% em todos os pedidos!', 'info')">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-400 to-red-600 mx-auto mb-1.5 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+          </div>
+          <p class="text-[11px] font-semibold text-marca-900 truncate">iFood</p>
+          <p class="text-[10px] text-emerald-600 font-bold">5% cashback</p>
+        </div>
+        <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex-shrink-0 w-[100px] text-center cursor-pointer hover:shadow-md transition-all" onclick="toast('Cashback de 3% em todas as viagens!', 'info')">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gray-700 to-black mx-auto mb-1.5 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M13.5 2C12.4 2 11.4 2.4 10.7 3L4.5 9.6c-.8.8-1.2 1.9-1.2 3.1V20c0 1.1.9 2 2 2h1.5c1.1 0 2-.9 2-2v-2h6v2c0 1.1.9 2 2 2H20c1.1 0 2-.9 2-2v-7.3c0-1.2-.4-2.3-1.2-3.1l-6.2-6.5c-.7-.7-1.7-1.1-2.8-1.1z"/></svg>
+          </div>
+          <p class="text-[11px] font-semibold text-marca-900 truncate">Uber</p>
+          <p class="text-[10px] text-emerald-600 font-bold">3% cashback</p>
+        </div>
+        <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex-shrink-0 w-[100px] text-center cursor-pointer hover:shadow-md transition-all" onclick="toast('Cashback de 2% em compras online!', 'info')">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-700 mx-auto mb-1.5 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l4.59-4.58L18 11l-6 6z"/></svg>
+          </div>
+          <p class="text-[11px] font-semibold text-marca-900 truncate">Mercado Livre</p>
+          <p class="text-[10px] text-emerald-600 font-bold">2% cashback</p>
+        </div>
+        <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex-shrink-0 w-[100px] text-center cursor-pointer hover:shadow-md transition-all" onclick="toast('Cashback de 4% em combustível!', 'info')">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-red-500 mx-auto mb-1.5 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/></svg>
+          </div>
+          <p class="text-[11px] font-semibold text-marca-900 truncate">Postos</p>
+          <p class="text-[10px] text-emerald-600 font-bold">4% cashback</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Espaçamento final para menu -->
+    <div class="h-4"></div>
+  </div>
+</section>
+
+<script>
+  // Modal de Pagamento Pix
+  function carteira_sicardi_abrirPix() {
+    abrirModal(`
+      <div class="space-y-4">
+        <div class="bg-emerald-50 rounded-xl p-4 text-center">
+          <p class="text-sm text-emerald-800 font-medium mb-1">Valor da Fatura</p>
+          <p class="font-display text-3xl font-bold text-emerald-700">R$ 1.750,00</p>
+          <p class="text-xs text-emerald-600 mt-1">Vencimento: 15/02/2026</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4">
+          <p class="text-xs text-gray-500 font-medium mb-2 text-center">QR Code Pix</p>
+          <div class="w-40 h-40 bg-white rounded-lg mx-auto flex items-center justify-center border-2 border-dashed border-gray-300">
+            <svg class="w-16 h-16 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/></svg>
+          </div>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3">
+          <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Copia e Cola</p>
+          <p class="text-xs text-gray-600 font-mono break-all">00020126580014br.gov.bcb.pix0136123e4567-e89b-12d3-a456-42661417400052040000530398654041.750005802BR5925SiCardi Tecnologia6008Sao Paulo62070503***6304ABCD</p>
+        </div>
+        <div class="flex items-center gap-2 bg-amber-50 rounded-lg p-3">
+          <svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <p class="text-xs text-amber-800">O pagamento é confirmado em até 5 minutos</p>
+        </div>
+        <button onclick="carteira_sicardi_pagarFatura()" class="active:scale-95 transition-all w-full bg-emerald-600 hover:bg-emerald-700 text-white font-display font-bold py-3.5 rounded-xl shadow-md">Confirmar Pagamento</button>
+      </div>
+    `, 'Pagar Fatura via Pix');
+  }
+
+  function carteira_sicardi_pagarFatura() {
+    fecharModal();
+    setTimeout(function() {
+      toast('Pagamento de R$ 1.750,00 confirmado!', 'ok');
+      var faturaEl = document.getElementById('fatura-valor');
+      if (faturaEl) { faturaEl.textContent = 'R$ 0,00'; }
+    }, 300);
+  }
+
+  // Aumento de Limite
+  function carteira_sicardi_aumentoLimite() {
+    abrirModal(`
+      <div class="space-y-4">
+        <div class="text-center mb-4">
+          <div class="w-16 h-16 rounded-full bg-marca-50 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-8 h-8 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <h4 class="font-display font-bold text-marca-900 text-lg">Solicitar Aumento de Limite</h4>
+          <p class="text-sm text-gray-500 mt-1">Limite atual: R$ 6.000,00</p>
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-gray-700 mb-1.5">Limite Desejado (R$)</label>
+          <input type="text" id="input-limite" placeholder="Ex: 10.000,00" oninput="carteira_sicardi_mascaraMoeda(this)" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-display focus:ring-2 focus:ring-marca-500 focus:border-marca-500 outline-none transition-all">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-gray-700 mb-1.5">Justificativa</label>
+          <textarea rows="3" placeholder="Conte-nos por que você precisa de um limite maior..." class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-marca-500 focus:border-marca-500 outline-none transition-all resize-none"></textarea>
+        </div>
+        <div class="bg-blue-50 rounded-lg p-3 flex gap-2">
+          <svg class="w-4 h-4 text-marca-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <p class="text-xs text-marca-800">A análise leva até 3 dias úteis. Mantenha seus pagamentos em dia para aumentar suas chances.</p>
+        </div>
+        <button onclick="carteira_sicardi_enviarLimite()" class="active:scale-95 transition-all w-full bg-marca-600 hover:bg-marca-700 text-white font-display font-bold py-3.5 rounded-xl shadow-md">Enviar Solicitação</button>
+      </div>
+    `, 'Aumento de Limite');
+  }
+
+  function carteira_sicardi_mascaraMoeda(input) {
+    var v = input.value.replace(/\D/g, '');
+    v = (parseInt(v) / 100).toFixed(2);
+    v = v.replace('.', ',');
+    v = v.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    input.value = v ? 'R$ ' + v : '';
+  }
+
+  function carteira_sicardi_enviarLimite() {
+    var input = document.getElementById('input-limite');
+    if (!input || !input.value || input.value === 'R$ ') {
+      toast('Informe o valor do limite desejado.', 'erro');
+      return;
+    }
+    fecharModal();
+    toast('Solicitação de aumento de limite enviada! Analisaremos em até 3 dias úteis.', 'ok');
+  }
+
+  // Bloquear Cartão
+  function carteira_sicardi_bloquearCartao() {
+    abrirModal(`
+      <div class="space-y-4">
+        <div class="text-center">
+          <div class="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <h4 class="font-display font-bold text-marca-900 text-lg">Bloquear Cartão</h4>
+          <p class="text-sm text-gray-500 mt-1">Você está prestes a bloquear o cartão final 4829. Transações pendentes serão mantidas. Para reativar, entre em contato com o suporte.</p>
+        </div>
+        <div class="bg-red-50 rounded-lg p-3 flex gap-2">
+          <svg class="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+          <p class="text-xs text-red-700">Após o bloqueio, você não poderá fazer novas compras até a reativação.</p>
+        </div>
+        <div class="flex gap-2.5">
+          <button onclick="fecharModal()" class="active:scale-95 transition-all flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-display font-bold py-3 rounded-xl">Cancelar</button>
+          <button onclick="carteira_sicardi_confirmarBloqueio()" class="active:scale-95 transition-all flex-1 bg-red-600 hover:bg-red-700 text-white font-display font-bold py-3 rounded-xl shadow-md">Bloquear</button>
+        </div>
+      </div>
+    `, 'Confirmação de Bloqueio');
+  }
+
+  function carteira_sicardi_confirmarBloqueio() {
+    fecharModal();
+    toast('Cartão final 4829 bloqueado com sucesso.', 'erro');
+  }
+
+  // Detalhe da transação
+  function carteira_sicardi_detalheTransacao(estabelecimento, categoria, valor, data, status) {
+    var valorNum = valor.replace(/[^0-9,]/g, '').replace(',', '.');
+    abrirModal(`
+      <div class="space-y-4">
+        <div class="text-center">
+          <div class="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-2">
+            <span class="font-display font-bold text-marca-900 text-lg">${estabelecimento.charAt(0)}</span>
+          </div>
+          <h4 class="font-display font-bold text-marca-900 text-lg">${estabelecimento}</h4>
+          <p class="text-xs text-gray-400">${categoria}</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 space-y-2.5">
+          <div class="flex justify-between"><span class="text-xs text-gray-500">Valor</span><span class="text-sm font-display font-bold text-marca-900">${valor}</span></div>
+          <div class="flex justify-between"><span class="text-xs text-gray-500">Data</span><span class="text-sm text-marca-900">${data}</span></div>
+          <div class="flex justify-between"><span class="text-xs text-gray-500">Status</span><span class="badge badge-${status === 'estorno' ? 'info' : 'ok'} text-[10px]">${status === 'estorno' ? 'Estorno' : 'Aprovada'}</span></div>
+          <div class="flex justify-between"><span class="text-xs text-gray-500">Forma</span><span class="text-sm text-marca-900">Crédito</span></div>
+          <div class="flex justify-between"><span class="text-xs text-gray-500">Parcelas</span><span class="text-sm text-marca-900">1x</span></div>
+          <div class="flex justify-between"><span class="text-xs text-gray-500">NSU</span><span class="text-sm text-gray-400 font-mono text-xs">${Math.floor(Math.random() * 900000 + 100000)}</span></div>
+        </div>
+        <button onclick="fecharModal(); mostrarTela('catalogo-e-busca')" class="active:scale-95 transition-all w-full bg-marca-600 hover:bg-marca-700 text-white font-display font-bold py-3.5 rounded-xl shadow-md">Voltar à Loja</button>
+      </div>
+    `, 'Detalhe da Transação');
+  }
+
+  // Abrir gráfico completo
+  function carteira_sicardi_abrirGrafico() {
+    mostrarTela('meus-pedidos');
+  }
+
+  // Ver todas transações
+  function carteira_sicardi_verTodasTransacoes() {
+    mostrarTela('meus-pedidos');
+  }
+</script>
+
     <!-- TELAS -->
         </main>
 
