@@ -2798,6 +2798,577 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
     </script>
 
+    <section data-tela="painel-vendedor" class="hidden">
+    <div class="min-h-screen bg-slate-50 flex flex-col">
+        <div class="flex flex-1 overflow-hidden">
+            <aside id="sidebar-vendedor" class="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-slate-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 lg:relative lg:transform-none flex flex-col">
+                <div class="p-5 border-b border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-marca-900 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-display font-bold text-marca-900 text-sm">Minha Loja</p>
+                            <p class="text-xs text-slate-500">Loja do Carlos</p>
+                        </div>
+                    </div>
+                </div>
+                <nav class="flex-1 p-3 space-y-1 overflow-y-auto">
+                    <button onclick="mostrarTela('painel-vendedor');painel_vendedor_fecharSidebar()" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium bg-marca-50 text-marca-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                        Painel
+                    </button>
+                    <button onclick="abrirModalCadastrarProduto()" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                        Cadastrar Produto
+                    </button>
+                    <button onclick="abrirModalEstoque()" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                        Gerenciar Estoque
+                    </button>
+                    <button onclick="abrirModalRelatorios()" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        Relatórios Financeiros
+                    </button>
+                    <button onclick="abrirModalConfiguracoes()" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        Configurações da Loja
+                    </button>
+                    <div class="pt-4 mt-4 border-t border-slate-100">
+                        <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Minha Conta</p>
+                        <button onclick="mostrarTela('home-descobrir')" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                            Meu Perfil
+                        </button>
+                        <button onclick="mostrarTela('carteira-sicardi')" class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                            Carteira SiCardi
+                        </button>
+                    </div>
+                </nav>
+                <div class="p-4 border-t border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-marca-100 flex items-center justify-center text-marca-700 font-bold text-sm">CM</div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-slate-900 truncate">Carlos Mendes</p>
+                            <p class="text-xs text-slate-500">Vendedor</p>
+                        </div>
+                        <button onclick="painel_vendedor_toggleSidebar()" class="lg:hidden p-1.5 rounded-lg hover:bg-slate-100">
+                            <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+            <div class="fixed inset-0 bg-black/40 z-30 lg:hidden hidden" id="sidebar-overlay" onclick="painel_vendedor_fecharSidebar()"></div>
+            <div class="flex-1 overflow-y-auto pb-24">
+                <div class="sticky top-0 z-20 bg-marca-900 px-4 pt-6 pb-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <button onclick="painel_vendedor_abrirSidebar()" class="lg:hidden p-1.5 -ml-1.5 rounded-lg hover:bg-white/10 mb-1">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                            </button>
+                            <h1 class="font-display font-bold text-xl text-white">Painel do Vendedor</h1>
+                            <p class="text-sm text-white/70">Bom dia, Carlos 👋</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="abrirModalNotificacoes()" class="relative p-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                                <span class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 rounded-full text-[10px] text-white font-bold flex items-center justify-center">3</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-4 py-4 space-y-4">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-0.5">Faturamento</p>
+                            <p class="font-display font-bold text-lg text-marca-900">R$ 18.427</p>
+                            <p class="text-xs text-emerald-600 font-medium mt-1">↑ 12,3% vs mês anterior</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-0.5">Pedidos Pendentes</p>
+                            <p class="font-display font-bold text-lg text-marca-900">7</p>
+                            <p class="text-xs text-amber-600 font-medium mt-1">3 aguardando envio</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-0.5">Ticket Médio</p>
+                            <p class="font-display font-bold text-lg text-marca-900">R$ 142,50</p>
+                            <p class="text-xs text-emerald-600 font-medium mt-1">↑ 5,1% vs mês anterior</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-0.5">Reputação</p>
+                            <p class="font-display font-bold text-lg text-marca-900">4.8 ★</p>
+                            <p class="text-xs text-slate-500 font-medium mt-1">1.247 avaliações</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-display font-bold text-marca-900 text-sm">Vendas dos últimos 30 dias</h3>
+                            <span class="text-xs text-slate-500">R$ 18.427 total</span>
+                        </div>
+                        <svg viewBox="0 0 300 120" class="w-full h-32">
+                            <defs>
+                                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#2563EB" stop-opacity="0.2"/>
+                                    <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+                            <polyline fill="url(#chartGrad)" stroke="none" points=""/>
+                            <path d="M0,100 C10,95 20,90 30,88 C40,85 50,78 60,75 C70,70 80,65 90,68 C100,72 110,60 120,55 C130,48 140,45 150,42 C160,38 170,40 180,35 C190,30 200,28 210,25 C220,22 230,20 240,18 C250,15 260,12 270,15 C280,18 290,10 300,8 L300,120 L0,120 Z" fill="url(#chartGrad)"/>
+                            <polyline fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="0,100 10,95 20,90 30,88 40,85 50,78 60,75 70,70 80,65 90,68 100,72 110,60 120,55 130,48 140,45 150,42 160,38 170,40 180,35 190,30 200,28 210,25 220,22 230,20 240,18 250,15 260,12 270,15 280,18 290,10 300,8"/>
+                            <circle cx="290" cy="10" r="3.5" fill="#2563EB" stroke="white" stroke-width="2"/>
+                        </svg>
+                        <div class="flex justify-between mt-2 text-[10px] text-slate-400">
+                            <span>01 Jun</span><span>08 Jun</span><span>15 Jun</span><span>22 Jun</span><span>29 Jun</span><span>01 Jul</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-display font-bold text-marca-900 text-sm">Produtos Mais Vendidos</h3>
+                            <button onclick="mostrarTela('catalogo-e-busca')" class="text-xs text-marca-600 font-medium hover:text-marca-800 transition-colors">Ver todos</button>
+                        </div>
+                        <div class="space-y-2.5">
+                            <div class="bg-white rounded-xl p-3 border border-slate-100 shadow-sm flex items-center gap-3">
+                                <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-orange-100 to-orange-50 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-slate-900 truncate">Notebook Dell Inspiron 15</p>
+                                    <p class="text-xs text-slate-500">32 vendidos este mês</p>
+                                </div>
+                                <span class="badge badge-success text-xs">Top 1</span>
+                            </div>
+                            <div class="bg-white rounded-xl p-3 border border-slate-100 shadow-sm flex items-center gap-3">
+                                <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-slate-900 truncate">Smartphone Samsung A54</p>
+                                    <p class="text-xs text-slate-500">28 vendidos este mês</p>
+                                </div>
+                                <span class="badge badge-info text-xs">Top 2</span>
+                            </div>
+                            <div class="bg-white rounded-xl p-3 border border-slate-100 shadow-sm flex items-center gap-3">
+                                <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-emerald-100 to-emerald-50 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-slate-900 truncate">Fone JBL Tune 770NC</p>
+                                    <p class="text-xs text-slate-500">19 vendidos este mês</p>
+                                </div>
+                                <span class="badge text-xs bg-slate-100 text-slate-600">Top 3</span>
+                            </div>
+                            <div class="bg-white rounded-xl p-3 border border-slate-100 shadow-sm flex items-center gap-3">
+                                <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-purple-100 to-purple-50 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-slate-900 truncate">Kindle Paperwhite 5ª Geração</p>
+                                    <p class="text-xs text-slate-500">14 vendidos este mês</p>
+                                </div>
+                                <span class="badge text-xs bg-slate-100 text-slate-600">Top 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-display font-bold text-marca-900 text-sm">Pedidos Recentes</h3>
+                            <span id="pedidos-pending-count" class="text-xs text-amber-600 font-medium">7 pendentes</span>
+                        </div>
+                        <div id="lista-pedidos" class="space-y-2.5">
+                            <div class="pedido-card bg-white rounded-xl p-3.5 border border-slate-100 shadow-sm cursor-pointer hover:shadow-md transition-all" data-status="pendente" onclick="painel_vendedor_abrirDetalhePedido(this)">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xs flex-shrink-0">AM</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium text-slate-900">Ana Maria Santos</p>
+                                            <span class="badge badge-warning text-xs">Pendente</span>
+                                        </div>
+                                        <p class="text-xs text-slate-500 mt-0.5">Notebook Dell Inspiron 15 × 1</p>
+                                        <div class="flex items-center justify-between mt-2">
+                                            <span class="text-sm font-bold text-marca-900">R$ 3.499,00</span>
+                                            <span class="text-[11px] text-slate-400">Hoje, 14:32</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 mt-3 pt-3 border-t border-slate-50">
+                                    <button onclick="event.stopPropagation();painel_vendedor_confirmarPedido(this)" class="btn btn-sm flex-1 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 active:scale-95 transition-all font-medium text-xs">✓ Confirmar</button>
+                                    <button onclick="event.stopPropagation();painel_vendedor_enviarPedido(this)" class="btn btn-sm flex-1 bg-marca-50 text-marca-700 hover:bg-marca-100 active:scale-95 transition-all font-medium text-xs">📦 Enviar</button>
+                                </div>
+                            </div>
+                            <div class="pedido-card bg-white rounded-xl p-3.5 border border-slate-100 shadow-sm cursor-pointer hover:shadow-md transition-all" data-status="confirmado" onclick="painel_vendedor_abrirDetalhePedido(this)">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xs flex-shrink-0">RP</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium text-slate-900">Ricardo P.</p>
+                                            <span class="badge badge-info text-xs">Confirmado</span>
+                                        </div>
+                                        <p class="text-xs text-slate-500 mt-0.5">Smartphone Samsung A54 × 1</p>
+                                        <div class="flex items-center justify-between mt-2">
+                                            <span class="text-sm font-bold text-marca-900">R$ 2.199,00</span>
+                                            <span class="text-[11px] text-slate-400">Hoje, 11:15</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 mt-3 pt-3 border-t border-slate-50">
+                                    <button onclick="event.stopPropagation();painel_vendedor_enviarPedido(this)" class="btn btn-sm flex-1 bg-marca-50 text-marca-700 hover:bg-marca-100 active:scale-95 transition-all font-medium text-xs">📦 Enviar</button>
+                                    <button onclick="event.stopPropagation();painel_vendedor_cancelarPedido(this)" class="btn btn-sm flex-1 bg-red-50 text-red-700 hover:bg-red-100 active:scale-95 transition-all font-medium text-xs">✕ Cancelar</button>
+                                </div>
+                            </div>
+                            <div class="pedido-card bg-white rounded-xl p-3.5 border border-slate-100 shadow-sm cursor-pointer hover:shadow-md transition-all" data-status="enviado" onclick="painel_vendedor_abrirDetalhePedido(this)">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 font-bold text-xs flex-shrink-0">JL</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium text-slate-900">Julia L.</p>
+                                            <span class="badge badge-purple text-xs">Enviado</span>
+                                        </div>
+                                        <p class="text-xs text-slate-500 mt-0.5">Fone JBL Tune 770NC × 2</p>
+                                        <div class="flex items-center justify-between mt-2">
+                                            <span class="text-sm font-bold text-marca-900">R$ 598,00</span>
+                                            <span class="text-[11px] text-slate-400">Ontem, 18:45</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 mt-3 pt-3 border-t border-slate-50">
+                                    <span class="text-[11px] text-slate-400 flex items-center">📮 Código: BR1234567890</span>
+                                </div>
+                            </div>
+                            <div class="pedido-card bg-white rounded-xl p-3.5 border border-slate-100 shadow-sm cursor-pointer hover:shadow-md transition-all" data-status="pendente" onclick="painel_vendedor_abrirDetalhePedido(this)">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-700 font-bold text-xs flex-shrink-0">MF</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium text-slate-900">Marcos Ferreira</p>
+                                            <span class="badge badge-warning text-xs">Pendente</span>
+                                        </div>
+                                        <p class="text-xs text-slate-500 mt-0.5">Kindle Paperwhite × 1 + Capa × 1</p>
+                                        <div class="flex items-center justify-between mt-2">
+                                            <span class="text-sm font-bold text-marca-900">R$ 647,90</span>
+                                            <span class="text-[11px] text-slate-400">Ontem, 15:20</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 mt-3 pt-3 border-t border-slate-50">
+                                    <button onclick="event.stopPropagation();painel_vendedor_confirmarPedido(this)" class="btn btn-sm flex-1 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 active:scale-95 transition-all font-medium text-xs">✓ Confirmar</button>
+                                    <button onclick="event.stopPropagation();painel_vendedor_cancelarPedido(this)" class="btn btn-sm flex-1 bg-red-50 text-red-700 hover:bg-red-100 active:scale-95 transition-all font-medium text-xs">✕ Cancelar</button>
+                                </div>
+                            </div>
+                            <div class="pedido-card bg-white rounded-xl p-3.5 border border-slate-100 shadow-sm cursor-pointer hover:shadow-md transition-all" data-status="confirmado" onclick="painel_vendedor_abrirDetalhePedido(this)">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-700 font-bold text-xs flex-shrink-0">CA</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium text-slate-900">Camila Andrade</p>
+                                            <span class="badge badge-info text-xs">Confirmado</span>
+                                        </div>
+                                        <p class="text-xs text-slate-500 mt-0.5">MacBook Air M2 × 1</p>
+                                        <div class="flex items-center justify-between mt-2">
+                                            <span class="text-sm font-bold text-marca-900">R$ 8.499,00</span>
+                                            <span class="text-[11px] text-slate-400">15 Jun, 09:10</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 mt-3 pt-3 border-t border-slate-50">
+                                    <button onclick="event.stopPropagation();painel_vendedor_enviarPedido(this)" class="btn btn-sm flex-1 bg-marca-50 text-marca-700 hover:bg-marca-100 active:scale-95 transition-all font-medium text-xs">📦 Enviar</button>
+                                    <button onclick="event.stopPropagation();painel_vendedor_cancelarPedido(this)" class="btn btn-sm flex-1 bg-red-50 text-red-700 hover:bg-red-100 active:scale-95 transition-all font-medium text-xs">✕ Cancelar</button>
+                                </div>
+                            </div>
+                            <div class="pedido-card bg-white rounded-xl p-3.5 border border-slate-100 shadow-sm cursor-pointer hover:shadow-md transition-all" data-status="cancelado" onclick="painel_vendedor_abrirDetalhePedido(this)">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold text-xs flex-shrink-0">PO</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium text-slate-900">Pedro O.</p>
+                                            <span class="badge badge-danger text-xs">Cancelado</span>
+                                        </div>
+                                        <p class="text-xs text-slate-500 mt-0.5">Mouse Logitech MX Master 3S × 1</p>
+                                        <div class="flex items-center justify-between mt-2">
+                                            <span class="text-sm font-bold text-slate-900 line-through">R$ 549,00</span>
+                                            <span class="text-[11px] text-slate-400">14 Jun, 22:05</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-overlay" class="fixed inset-0 z-50 bg-black/50 flex items-end sm:items-center justify-center hidden" onclick="if(event.target===this)fecharModal()">
+        <div id="modal-container" class="bg-white rounded-t-3xl sm:rounded-2xl w-full max-w-lg max-h-[85vh] flex flex-col shadow-2xl transform transition-transform">
+            <div class="flex items-center justify-between p-5 border-b border-slate-100">
+                <h3 id="modal-title" class="font-display font-bold text-lg text-marca-900"></h3>
+                <button onclick="fecharModal()" class="p-2 rounded-xl hover:bg-slate-100 transition-colors">
+                    <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div id="modal-body" class="p-5 overflow-y-auto flex-1"></div>
+        </div>
+    </div>
+    <div id="toast-container" class="fixed top-4 left-4 right-4 z-[60] flex flex-col items-center gap-2 pointer-events-none"></div>
+</section>
+
+<script>
+function painel_vendedor_abrirSidebar() {
+    const sb = document.getElementById('sidebar-vendedor');
+    const ov = document.getElementById('sidebar-overlay');
+    if(sb) { sb.classList.remove('-translate-x-full'); sb.classList.add('translate-x-0'); }
+    if(ov) ov.classList.remove('hidden');
+}
+function painel_vendedor_fecharSidebar() {
+    const sb = document.getElementById('sidebar-vendedor');
+    const ov = document.getElementById('sidebar-overlay');
+    if(sb) { sb.classList.add('-translate-x-full'); sb.classList.remove('translate-x-0'); }
+    if(ov) ov.classList.add('hidden');
+}
+function painel_vendedor_confirmarPedido(btn) {
+    const card = btn.closest('.pedido-card');
+    const badge = card.querySelector('.badge');
+    if(badge) { badge.className='badge badge-info text-xs'; badge.textContent='Confirmado'; }
+    btn.disabled=true; btn.textContent='✓ Confirmado'; btn.classList.add('opacity-50');
+    const sib = btn.nextElementSibling; if(sib) sib.classList.add('hidden');
+    toast('Pedido confirmado com sucesso!','ok');
+    painel_vendedor_atualizarContadores();
+}
+function painel_vendedor_enviarPedido(btn) {
+    const card = btn.closest('.pedido-card');
+    const badge = card.querySelector('.badge');
+    if(badge) { badge.className='badge badge-purple text-xs'; badge.textContent='Enviado'; }
+    btn.disabled=true; btn.textContent='✓ Enviado'; btn.classList.add('opacity-50');
+    const prev = btn.previousElementSibling; if(prev) prev.classList.add('hidden');
+    const actions = card.querySelector('.border-t');
+    if(actions && !actions.querySelector('span')) {
+        actions.innerHTML='<span class="text-[11px] text-slate-400 flex items-center">📮 Código: BR' + Math.floor(1000000000+Math.random()*9000000000) + '</span>';
+    }
+    toast('Pedido enviado! Código de rastreamento gerado.','ok');
+    painel_vendedor_atualizarContadores();
+}
+function painel_vendedor_cancelarPedido(btn) {
+    const card = btn.closest('.pedido-card');
+    const badge = card.querySelector('.badge');
+    if(badge) { badge.className='badge badge-danger text-xs'; badge.textContent='Cancelado'; }
+    const actions = card.querySelector('.border-t');
+    if(actions) actions.innerHTML='';
+    const preco = card.querySelector('.font-bold.text-marca-900, .font-bold.text-slate-900');
+    if(preco) { preco.classList.remove('text-marca-900'); preco.classList.add('text-slate-900','line-through'); }
+    btn.disabled=true; btn.textContent='✕ Cancelado'; btn.classList.add('opacity-50');
+    const sib = btn.previousElementSibling; if(sib) sib.classList.add('hidden');
+    toast('Pedido cancelado.','info');
+    painel_vendedor_atualizarContadores();
+}
+function painel_vendedor_atualizarContadores() {
+    let pend=0, conf=0, env=0, canc=0;
+    document.querySelectorAll('.pedido-card').forEach(c=>{
+        const s=c.getAttribute('data-status');
+        if(s==='pendente')pend++;else if(s==='confirmado')conf++;else if(s==='enviado')env++;else if(s==='cancelado')canc++;
+    });
+    const el=document.getElementById('pedidos-pending-count');
+    if(el) el.textContent = pend+' pendente'+(pend!==1?'s':'');
+}
+function painel_vendedor_abrirDetalhePedido(card) {
+    const nome = card.querySelector('.font-medium.text-slate-900')?.textContent || '';
+    const prod = card.querySelector('.text-xs.text-slate-500')?.textContent || '';
+    const preco = card.querySelector('.font-bold.text-marca-900, .font-bold.text-slate-900')?.textContent || '';
+    const badge = card.querySelector('.badge')?.textContent || '';
+    const data = card.querySelector('.text-\\[11px\\].text-slate-400')?.textContent || '';
+    const statusMap = {Pendente:'warning',Confirmado:'info',Enviado:'purple',Cancelado:'danger'};
+    const bClass = statusMap[badge] || 'info';
+    abrirModal(`
+        <div class="space-y-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-marca-100 flex items-center justify-center text-marca-700 font-bold text-lg">${nome.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</div>
+                    <div><p class="font-medium text-slate-900">${nome}</p><p class="text-xs text-slate-500">${data}</p></div>
+                </div>
+                <span class="badge badge-${bClass}">${badge}</span>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-4 space-y-3">
+                <div class="flex justify-between text-sm"><span class="text-slate-500">Produto</span><span class="font-medium text-slate-900">${prod}</span></div>
+                <div class="flex justify-between text-sm"><span class="text-slate-500">Valor total</span><span class="font-bold text-marca-900 text-base">${preco}</span></div>
+                <div class="flex justify-between text-sm"><span class="text-slate-500">Pagamento</span><span class="text-slate-700">Cartão de crédito</span></div>
+                <div class="flex justify-between text-sm"><span class="text-slate-500">Endereço</span><span class="text-slate-700 text-right max-w-[60%]">Rua das Flores, 123 - Jardim América, SP</span></div>
+            </div>
+            <div class="border-t border-slate-100 pt-4">
+                <h4 class="font-display font-bold text-sm text-marca-900 mb-3">Histórico do Pedido</h4>
+                <div class="space-y-3">
+                    <div class="flex gap-3"><div class="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div><div><p class="text-sm text-slate-700">Pedido realizado pelo cliente</p><p class="text-xs text-slate-400">${data}</p></div></div>
+                    <div class="flex gap-3"><div class="w-2 h-2 rounded-full bg-blue-500 mt-1.5 flex-shrink-0"></div><div><p class="text-sm text-slate-700">Pagamento confirmado via SiCardi</p><p class="text-xs text-slate-400">Momento do pedido</p></div></div>
+                    ${badge==='Cancelado'?'<div class="flex gap-3"><div class="w-2 h-2 rounded-full bg-red-500 mt-1.5 flex-shrink-0"></div><div><p class="text-sm text-slate-700">Pedido cancelado</p><p class="text-xs text-slate-400">Hoje</p></div></div>':''}
+                </div>
+            </div>
+            ${badge!=='Cancelado'?`<div class="flex gap-3 pt-2">
+                ${badge==='Pendente'?'<button onclick="fecharModal();painel_vendedor_confirmarPedido(this.closest(\'.space-y-4\').previousElementSibling?.querySelector(\'button\')||document.querySelector(\'.pedido-card [class*=emerald]\'))" class="btn btn-primary flex-1 active:scale-95 transition-all text-sm">✓ Confirmar Pedido</button><button onclick="fecharModal();painel_vendedor_cancelarPedido(document.querySelector(\'.pedido-card .bg-red-50\'))" class="btn flex-1 bg-red-50 text-red-700 hover:bg-red-100 active:scale-95 transition-all text-sm">Cancelar</button>':''}
+                ${badge==='Confirmado'?'<button onclick="fecharModal();painel_vendedor_enviarPedido(this.closest(\'.space-y-4\').previousElementSibling?.querySelector(\'button\')||document.querySelector(\'.pedido-card [class*=marca-50]\'))" class="btn btn-primary flex-1 active:scale-95 transition-all text-sm">📦 Enviar Pedido</button><button onclick="fecharModal();painel_vendedor_cancelarPedido(document.querySelector(\'.pedido-card .bg-red-50\'))" class="btn flex-1 bg-red-50 text-red-700 hover:bg-red-100 active:scale-95 transition-all text-sm">Cancelar</button>':''}
+                ${badge==='Enviado'?'<button onclick="toast(\'Código de rastreamento enviado ao cliente!\',\'ok\')" class="btn btn-primary flex-1 active:scale-95 transition-all text-sm">📋 Rastrear Envio</button>':''}
+            </div>`:''}
+        </div>
+    `, 'Detalhes do Pedido #' + Math.floor(1000+Math.random()*9000));
+}
+function abrirModalCadastrarProduto() {
+    abrirModal(`
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Nome do Produto *</label>
+                <input type="text" id="cad-nome" placeholder="Ex: Camiseta Algodão Premium" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-marca-500 focus:ring-2 focus:ring-marca-200 outline-none text-sm transition-all">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Categoria *</label>
+                <select id="cad-categoria" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-marca-500 focus:ring-2 focus:ring-marca-200 outline-none text-sm transition-all bg-white">
+                    <option value="">Selecione...</option><option>Eletrônicos</option><option>Roupas</option><option>Casa & Decoração</option><option>Esportes</option><option>Livros</option><option>Outros</option>
+                </select>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Preço (R$) *</label>
+                    <input type="text" id="cad-preco" placeholder="0,00" oninput="this.value=this.value.replace(/[^0-9,]/g,'')" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-marca-500 focus:ring-2 focus:ring-marca-200 outline-none text-sm transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Estoque *</label>
+                    <input type="number" id="cad-estoque" placeholder="0" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-marca-500 focus:ring-2 focus:ring-marca-200 outline-none text-sm transition-all">
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Descrição</label>
+                <textarea id="cad-desc" rows="3" placeholder="Descreva seu produto..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-marca-500 focus:ring-2 focus:ring-marca-200 outline-none text-sm transition-all resize-none"></textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Fotos do Produto</label>
+                <div class="border-2 border-dashed border-slate-200 rounded-xl p-6 text-center hover:border-marca-300 transition-colors cursor-pointer">
+                    <svg class="w-8 h-8 text-slate-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <p class="text-sm text-slate-500">Toque para adicionar fotos</p>
+                    <p class="text-xs text-slate-400 mt-1">JPG, PNG até 5MB cada</p>
+                </div>
+            </div>
+            <button onclick="painel_vendedor_salvarProduto()" class="btn btn-primary w-full py-3.5 active:scale-95 transition-all font-medium text-sm">Cadastrar Produto</button>
+        </div>
+    `, 'Cadastrar Produto');
+}
+function painel_vendedor_salvarProduto() {
+    const nome = document.getElementById('cad-nome')?.value;
+    const cat = document.getElementById('cad-categoria')?.value;
+    const preco = document.getElementById('cad-preco')?.value;
+    if(!nome||!cat||!preco) { toast('Preencha todos os campos obrigatórios.','erro'); return; }
+    fecharModal();
+    toast('Produto "'+nome+'" cadastrado com sucesso!','ok');
+}
+function abrirModalEstoque() {
+    abrirModal(`
+        <div class="space-y-3">
+            <div class="flex items-center gap-2 mb-2">
+                <input type="text" id="estoque-search" oninput="painel_vendedor_filtrarEstoque(this.value)" placeholder="Buscar produto..." class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 focus:border-marca-500 outline-none text-sm transition-all">
+            </div>
+            <div id="lista-estoque" class="space-y-2">
+                <div class="estoque-item flex items-center justify-between p-3 bg-slate-50 rounded-xl"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-gradient-to-br from-orange-100 to-orange-50 flex items-center justify-center"><svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><p class="text-sm font-medium text-slate-900">Notebook Dell Inspiron 15</p><p class="text-xs text-slate-500">SKU: NB-DELL-001</p></div></div><div class="text-right"><p class="text-sm font-bold text-slate-900">23 un.</p><span class="badge badge-success text-[10px]">OK</span></div></div>
+                <div class="estoque-item flex items-center justify-between p-3 bg-slate-50 rounded-xl"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center"><svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><div><p class="text-sm font-medium text-slate-900">Smartphone Samsung A54</p><p class="text-xs text-slate-500">SKU: SM-A54-128</p></div></div><div class="text-right"><p class="text-sm font-bold text-amber-600">5 un.</p><span class="badge badge-warning text-[10px]">Baixo</span></div></div>
+                <div class="estoque-item flex items-center justify-between p-3 bg-slate-50 rounded-xl"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-100 to-emerald-50 flex items-center justify-center"><svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg></div><div><p class="text-sm font-medium text-slate-900">Fone JBL Tune 770NC</p><p class="text-xs text-slate-500">SKU: AU-JBL-770</p></div></div><div class="text-right"><p class="text-sm font-bold text-red-600">2 un.</p><span class="badge badge-danger text-[10px]">Crítico</span></div></div>
+                <div class="estoque-item flex items-center justify-between p-3 bg-slate-50 rounded-xl"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-100 to-purple-50 flex items-center justify-center"><svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div><div><p class="text-sm font-medium text-slate-900">Kindle Paperwhite 5ª Geração</p><p class="text-xs text-slate-500">SKU: KW-PW5-16</p></div></div><div class="text-right"><p class="text-sm font-bold text-slate-900">18 un.</p><span class="badge badge-success text-[10px]">OK</span></div></div>
+                <div class="estoque-item flex items-center justify-between p-3 bg-slate-50 rounded-xl"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-gradient-to-br from-pink-100 to-pink-50 flex items-center justify-center"><svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><div><p class="text-sm font-medium text-slate-900">Capa Kindle Paperwhite</p><p class="text-xs text-slate-500">SKU: AC-KW-01</p></div></div><div class="text-right"><p class="text-sm font-bold text-red-600">0 un.</p><span class="badge badge-danger text-[10px]">Esgotado</span></div></div>
+                <div class="estoque-item flex items-center justify-between p-3 bg-slate-50 rounded-xl"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-gradient-to-br from-slate-100 to-slate-50 flex items-center justify-center"><svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg></div><div><p class="text-sm font-medium text-slate-900">Mouse Logitech MX Master 3S</p><p class="text-xs text-slate-500">SKU: MS-LOG-MX3</p></div></div><div class="text-right"><p class="text-sm font-bold text-amber-600">4 un.</p><span class="badge badge-warning text-[10px]">Baixo</span></div></div>
+            </div>
+            <div id="estoque-vazio" class="hidden text-center py-8">
+                <svg class="w-12 h-12 text-slate-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
+                <p class="text-sm text-slate-500">Nenhum produto encontrado</p>
+            </div>
+        </div>
+    `, 'Gerenciar Estoque');
+}
+function painel_vendedor_filtrarEstoque(q) {
+    const items = document.querySelectorAll('#lista-estoque .estoque-item');
+    const vazio = document.getElementById('estoque-vazio');
+    let vis=0;
+    items.forEach(it=>{const t=it.textContent.toLowerCase();it.style.display=t.includes(q.toLowerCase())?'':'none';if(it.style.display!=='none')vis++;});
+    if(vazio) vazio.classList.toggle('hidden', vis>0);
+}
+function abrirModalRelatorios() {
+    abrirModal(`
+        <div class="space-y-5">
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-emerald-50 rounded-xl p-4 text-center"><p class="text-xs text-emerald-700 mb-1">Receita Total</p><p class="font-display font-bold text-xl text-emerald-800">R$ 68.420</p><p class="text-[10px] text-emerald-600 mt-1">Últimos 30 dias</p></div>
+                <div class="bg-blue-50 rounded-xl p-4 text-center"><p class="text-xs text-blue-700 mb-1">Total de Vendas</p><p class="font-display font-bold text-xl text-blue-800">129</p><p class="text-[10px] text-blue-600 mt-1">Pedidos concluídos</p></div>
+                <div class="bg-purple-50 rounded-xl p-4 text-center"><p class="text-xs text-purple-700 mb-1">Taxa de Conversão</p><p class="font-display font-bold text-xl text-purple-800">8,2%</p><p class="text-[10px] text-purple-600 mt-1">Visitas → Vendas</p></div>
+                <div class="bg-amber-50 rounded-xl p-4 text-center"><p class="text-xs text-amber-700 mb-1">Ticket Médio</p><p class="font-display font-bold text-xl text-amber-800">R$ 530</p><p class="text-[10px] text-amber-600 mt-1">Por pedido</p></div>
+            </div>
+            <div>
+                <h4 class="font-display font-bold text-sm text-marca-900 mb-3">Performance por Produto</h4>
+                <div class="space-y-3">
+                    <div><div class="flex justify-between text-sm mb-1"><span class="text-slate-600">Notebook Dell</span><span class="font-medium text-slate-900">R$ 34.990</span></div><div class="h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-marca-500 rounded-full" style="width:85%"></div></div></div>
+                    <div><div class="flex justify-between text-sm mb-1"><span class="text-slate-600">Samsung A54</span><span class="font-medium text-slate-900">R$ 22.990</span></div><div class="h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-marca-500 rounded-full" style="width:60%"></div></div></div>
+                    <div><div class="flex justify-between text-sm mb-1"><span class="text-slate-600">Fone JBL</span><span class="font-medium text-slate-900">R$ 11.382</span></div><div class="h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-marca-500 rounded-full" style="width:30%"></div></div></div>
+                    <div><div class="flex justify-between text-sm mb-1"><span class="text-slate-600">Kindle</span><span class="font-medium text-slate-900">R$ 9.066</span></div><div class="h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-marca-500 rounded-full" style="width:22%"></div></div></div>
+                </div>
+            </div>
+            <button onclick="toast('Relatório PDF enviado para seu e-mail!','ok')" class="btn btn-primary w-full py-3 active:scale-95 transition-all font-medium text-sm">📄 Exportar Relatório PDF</button>
+        </div>
+    `, 'Relatórios Financeiros');
+}
+function abrirModalConfiguracoes() {
+    abrirModal(`
+        <div class="space-y-5">
+            <div class="text-center">
+                <div class="w-20 h-20 rounded-full bg-marca-100 flex items-center justify-center text-marca-700 font-bold text-2xl mx-auto mb-3">CM</div>
+                <p class="font-display font-bold text-marca-900">Carlos Mendes</p>
+                <p class="text-sm text-slate-500">carlos.mendes@email.com</p>
+            </div>
+            <div class="space-y-3">
+                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                    <div class="flex items-center gap-3"><svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg><span class="text-sm text-slate-700">Editar Perfil</span></div>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                    <div class="flex items-center gap-3"><svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="text-sm text-slate-700">Dados da Loja</span></div>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                    <div class="flex items-center gap-3"><svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243A8 8 0 1117.657 16.657z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-sm text-slate-700">Endereço de Entrega</span></div>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                    <div class="flex items-center gap-3"><svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg><span class="text-sm text-slate-700">Conta Bancária</span></div>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                    <div class="flex items-center gap-3"><svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7h2a2 2 0 012 2v5.5a2.5 2.5 0 01-.5 1.5l-5.236 3.32a1 1 0 00-.364 1.118l1.767 1.767a1 1 0 00.707.293H15"/></svg><span class="text-sm text-slate-700">Notificações</span></div>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </div>
+            </div>
+            <button onclick="fecharModal();toast('Configurações salvas!','ok')" class="btn btn-primary w-full py-3.5 active:scale-95 transition-all font-medium text-sm">Salvar Alterações</button>
+        </div>
+    `, 'Configurações da Loja');
+}
+function abrirModalNotificacoes() {
+    abrirModal(`
+        <div class="space-y-3">
+            <div class="flex gap-3 p-3 bg-blue-50 rounded-xl"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div><div><p class="text-sm text-slate-900">Novo pedido recebido!</p><p class="text-xs text-slate-500">Ana Maria Santos comprou Notebook Dell Inspiron 15. Pedido #3892.</p><p class="text-[11px] text-slate-400 mt-1">Há 2 minutos</p></div></div>
+            <div class="flex gap-3 p-3 bg-amber-50 rounded-xl"><div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.774-.833-1.964-.833-2.732 0L4.268 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg></div><div><p class="text-sm text-slate-900">Estoque baixo: Fone JBL</p><p class="text-xs text-slate-500">Restam apenas 2 unidades. Considere repor o estoque.</p><p class="text-[11px] text-slate-400 mt-1">Há 1 hora</p></div></div>
+            <div class="flex gap-3 p-3 bg-emerald-50 rounded-xl"><div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div><div><p class="text-sm text-slate-900">Nova avaliação 5 estrelas!</p><p class="text-xs text-slate-500">Ricardo P. avaliou: "Produto excelente, entrega rápida!"</p><p class="text-[11px] text-slate-400 mt-1">Há 3 horas</p></div></div>
+        </div>
+    `, 'Notificações');
+}
+</script>
+
     <!-- TELAS -->
         </main>
 
